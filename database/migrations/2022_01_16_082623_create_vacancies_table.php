@@ -17,14 +17,14 @@ class CreateVacanciesTable extends Migration
             $table->id();
 
             $table->string('userId');
-            $table->string('name', 50);
+            $table->string('name');
             $table->string('postulation_deadline', 20)->nullable();
             $table->text('description');
             $table->boolean('status');
             $table->string('salary', 10);
-            $table->string('company', 30);
-            $table->string('typeWork', 30);
-            $table->string('job_location', 30);
+            $table->string('company');
+            $table->string('typeWork');
+            $table->string('job_location');
             $table->text('skills');
             $table->string('hours_per_week', 30);
             $table->string('minimum_experience', 30);

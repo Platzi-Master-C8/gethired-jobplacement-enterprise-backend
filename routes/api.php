@@ -31,6 +31,6 @@ Route::get('/v1/vacancies', [VacancyController::class, 'index'])->name('vacancie
 Route::get('/v1/vacancies/{id}', [VacancyController::class, 'indexFindOne'])->name('vacancies.indexFindOne');
 
 
-Route::post('/v1/vacancy', [VacancyController::class, 'store'])->name('vacancy.store');
-Route::put('/v1/vacancy/{id}', [VacancyController::class, 'update'])->name('vacancy.update');
-Route::delete('/v1/vacancy/{id}', [VacancyController::class, 'destroy'])->name('vacancy.destroy');
+Route::post('/v1/vacancies', [VacancyController::class, 'store'])->name('vacancies.store');
+Route::put('/v1/vacancies/{id}', [VacancyController::class, 'update'])->name('vacancies.update');
+Route::delete('/v1/vacancies/{id}', [VacancyController::class, 'destroy'])->name('vacancies.destroy');
