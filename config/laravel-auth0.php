@@ -99,4 +99,8 @@ return [
     // 'guzzle_options' => []
 
     'audience' => env('AUTH0_AUDIENCIE'),
+
+    // 'authorized_issuers' => [ 'http://localhost/' ],
+
+    'api_identifier' => env('AUTH0_AUDIENCIE'),
 ];
