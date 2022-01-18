@@ -20,3 +20,9 @@ use App\Http\Controllers\Api\v1\UserController;
 //});
 
 Route::get('v1/users', [UserController::class, 'index'])->name('users.index');
+
+Route::get('check-auth0', function () {
+    return response()->json([
+        'message' => 'Secure Zone by token auth0',
+    ]);
+})->middleware('jwt.auth0');
