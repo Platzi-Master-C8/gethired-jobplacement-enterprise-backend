@@ -14,6 +14,6 @@ class VacancyApplicant extends Model
     protected $fillable = [
         'applicant_id',
         'vacancy_id',
-        'years_experience',
+        'aspiration_salary',
     ];
 }
