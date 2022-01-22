@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\v1\UserController;
 use App\Http\Controllers\Api\v1\VacancyController;
+use App\Http\Controllers\Api\v1\CompanyController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -34,3 +36,7 @@ Route::get('/v1/vacancies/{id}', [VacancyController::class, 'indexFindOne'])->na
 Route::post('/v1/vacancies', [VacancyController::class, 'store'])->name('vacancies.store');
 Route::put('/v1/vacancies/{id}', [VacancyController::class, 'update'])->name('vacancies.update');
 Route::delete('/v1/vacancies/{id}', [VacancyController::class, 'destroy'])->name('vacancies.destroy');
+
+Route::get('v1/companies', [CompanyController::class, 'list'])->name('companies.list');
+Route::get('v1/companies/select', [CompanyController::class, 'listAsSelect'])->name('companies.list-select');
+Route::get('v1/companies/vacancies', [CompanyController::class, 'listWithVacancies'])->name('companies.list-with-vacancies');

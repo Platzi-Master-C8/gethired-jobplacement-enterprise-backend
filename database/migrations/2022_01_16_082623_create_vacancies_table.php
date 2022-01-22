@@ -22,7 +22,7 @@ class CreateVacanciesTable extends Migration
             $table->text('description');
             $table->boolean('status');
             $table->string('salary', 10);
-            $table->string('company');
+            $table->integer('company_id');
             $table->string('typeWork');
             $table->string('job_location');
             $table->text('skills');

@@ -3,6 +3,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Company;
 use App\Models\Vacancy;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -31,7 +32,7 @@ class VacancyFactory extends Factory
             'description' => $this->faker->paragraph(),
             'status' => $this->faker->boolean(),
             'salary' => $this->faker->numberBetween($min = 1150000, $max = 10000000),
-            'company' => $this->faker->sentence(),
+            'company_id' => Company::factory(),
             'typeWork' => $this->faker->sentence(),
             'job_location' => $this->faker->streetAddress(),
             'skills' => $this->faker->sentence(),

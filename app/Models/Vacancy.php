@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Vacancy extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'userId',
         'name',
@@ -15,7 +16,7 @@ class Vacancy extends Model
         'description',
         'status',
         'salary',
-        'company',
+        'company_id',
         'typeWork',
         'job_location',
         'skills',
