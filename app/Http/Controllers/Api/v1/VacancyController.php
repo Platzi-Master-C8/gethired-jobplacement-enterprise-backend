@@ -15,8 +15,12 @@ class VacancyController extends Controller
      */
     public function index()
     {
-        $datavacancies = Vacancy::all();
-        return $datavacancies;
+        $datavacancies = Vacancy::get();
+
+        return response()->json([
+            'count' => $datavacancies->count(),
+            'data' => $datavacancies,
+        ]);
     }
 
     public function indexFindOne($id)
