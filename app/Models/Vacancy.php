@@ -9,6 +9,8 @@ class Vacancy extends Model
 {
     use HasFactory;
 
+    protected $table = 'vacancies';
+
     protected $fillable = [
         'userId',
         'name',
@@ -23,4 +25,9 @@ class Vacancy extends Model
         'hours_per_week',
         'minimum_experience',
     ];
+
+    public function applicants()
+    {
+        return $this->hasMany(VacancyApplicant::class);
+    }
 }
