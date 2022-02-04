@@ -34,7 +34,7 @@ class VacancyFactory extends Factory
             'status' => $this->faker->boolean(),
             'salary' => $this->faker->numberBetween($min = 1150000, $max = 10000000),
             'company_id' => Company::factory(),
-            'typeWork' => $this->faker->sentence(),
+            'typeWork' => $this->faker->randomElement(['Full-time', 'Part-time', 'Remote']),
             'job_location' => $this->faker->streetAddress(),
             'skills' => $this->faker->sentence(),
             'hours_per_week' => $this->faker->numberBetween($min = 12, $max = 48),

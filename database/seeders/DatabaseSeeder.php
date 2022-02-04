@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         //\App\Models\User::factory(10)->create();
-        Vacancy::factory(1)->create();
+
         Company::factory(6)->has(Vacancy::factory(5), 'vacancies')->create();
         Applicant::factory(50)->create();
 
