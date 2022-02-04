@@ -28,6 +28,7 @@ class VacancyFactory extends Factory
         return [
 
             'name' => $this->faker->randomElement(['Front-end developer', 'Back-end developer', 'Data Analyst', 'UI Desing', 'UX Design']),
+            'user_id' => $this->faker->uuid(),
             'postulation_deadline' => $this->faker->date(),
             'description' => $this->faker->paragraph(),
             'status' => $this->faker->boolean(),

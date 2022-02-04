@@ -15,6 +15,7 @@ class VacancyCollection extends ResourceCollection
     public function toArray($request)
     {
         return [
+            'count' => $this->collection->count(),
             'data' => $this->collection,
         ];
     }

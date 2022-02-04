@@ -16,10 +16,12 @@ class VacancyResource extends JsonResource
     {
         return [
             'id'                    =>  $this->id,
+            'user_id'               =>  $this->user_id,
             'postulation_deadline'  =>  $this->postulation_deadline,
             'description'           =>  $this->description,
             'status'                =>  $this->status,
             'salary'                =>  $this->salary,
+            'company_id'            =>  $this->company_id,
             'typeWork'              =>  $this->typeWork,
             'job_location'          =>  $this->job_location,
             'skills'                =>  $this->skills,

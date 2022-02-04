@@ -10,8 +10,11 @@ class Vacancy extends Model
 {
     use HasFactory;
 
+    protected $table = 'vacancies';
+
     protected $fillable = [
         'name',
+        'user_id',
         'postulation_deadline',
         'description',
         'status',
@@ -27,5 +30,10 @@ class Vacancy extends Model
     public function company(): BelongsTo
     {
         return $this->belongsTo(Company::class);
+    }
+
+    public function applicants()
+    {
+        return $this->hasMany(VacancyApplicant::class);
     }
 }
