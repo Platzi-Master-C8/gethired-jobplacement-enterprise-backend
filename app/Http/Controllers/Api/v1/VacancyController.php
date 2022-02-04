@@ -18,12 +18,14 @@ class VacancyController extends Controller
      */
     public function index()
     {
-        $datavacancies = Vacancy::get();
 
-        return new VacancyCollection(Vacancy::get());
+
+        return new VacancyCollection(Vacancy::with("company")->get());
+
+
         // return response()->json([
-        //     'count' => $datavacancies->count(),
-        //     'data' => $datavacancies,
+        //     '
+
         // ]);
     }
 
