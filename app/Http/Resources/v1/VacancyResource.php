@@ -1,0 +1,36 @@
+<?php
+
+namespace App\Http\Resources\v1;
+
+use Illuminate\Http\Resources\Json\JsonResource;
+
+class VacancyResource extends JsonResource
+{
+    /**
+     * Transform the resource into an array.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
+     */
+    public function toArray($request)
+    {
+        return [
+            'id'                    =>  $this->id,
+            'postulation_deadline'  =>  $this->postulation_deadline,
+            'description'           =>  $this->description,
+            'status'                =>  $this->status,
+            'salary'                =>  $this->salary,
+            'typeWork'              =>  $this->typeWork,
+            'job_location'          =>  $this->job_location,
+            'skills'                =>  $this->skills,
+            'hours_per_week'        =>  $this->hours_per_week,
+            'minimum_experience'    =>  $this->minimum_experience,
+            'created_at'            =>  $this->created_at,
+            'updated_at'            =>  $this->updated_at,
+            'company'               =>  [
+                'id'   => $this->company->id,
+                'name' => $this->company->name,
+            ],
+        ];
+    }
+}

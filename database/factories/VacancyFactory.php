@@ -26,7 +26,7 @@ class VacancyFactory extends Factory
     public function definition()
     {
         return [
-            'userId' => $this->faker->uuid(),
+
             'name' => $this->faker->randomElement(['Front-end developer', 'Back-end developer', 'Data Analyst', 'UI Desing', 'UX Design']),
             'postulation_deadline' => $this->faker->date(),
             'description' => $this->faker->paragraph(),

@@ -16,7 +16,7 @@ class CreateVacanciesTable extends Migration
         Schema::create('vacancies', function (Blueprint $table) {
             $table->id();
 
-            $table->string('userId');
+
             $table->string('name');
             $table->string('postulation_deadline', 20)->nullable();
             $table->text('description');

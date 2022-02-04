@@ -4,13 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Vacancy extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'userId',
         'name',
         'postulation_deadline',
         'description',
@@ -23,4 +23,9 @@ class Vacancy extends Model
         'hours_per_week',
         'minimum_experience',
     ];
+
+    public function company(): BelongsTo
+    {
+        return $this->belongsTo(Company::class);
+    }
 }

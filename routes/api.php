@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\v1\UserController;
 use App\Http\Controllers\Api\v1\VacancyController;
 use App\Http\Controllers\Api\v1\CompanyController;
+use App\Http\Requests\Vacancy;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,7 @@ Route::get('/v1/vacancies/{id}', [VacancyController::class, 'indexFindOne'])->na
 Route::post('/v1/vacancies', [VacancyController::class, 'store'])->name('vacancies.store');
 Route::put('/v1/vacancies/{id}', [VacancyController::class, 'update'])->name('vacancies.update');
 Route::delete('/v1/vacancies/{id}', [VacancyController::class, 'destroy'])->name('vacancies.destroy');
+Route::patch('/v1/Vacancies/{id}', [VacancyController::class, 'patch'])->name('vancancies.patch');
 
 Route::get('v1/companies', [CompanyController::class, 'list'])->name('companies.list');
 Route::get('v1/companies/select', [CompanyController::class, 'listAsSelect'])->name('companies.list-select');

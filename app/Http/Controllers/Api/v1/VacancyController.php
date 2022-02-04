@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Api\v1;
 use App\Http\Controllers\Controller;
 use App\Models\Vacancy;
 use Illuminate\Http\Request;
+use App\Http\Requests\Vacancy as VacancyRequest;
+use App\Http\Resources\v1\VacancyCollection;
+use App\Http\Resources\v1\VacancyResource;
 
 class VacancyController extends Controller
 {
@@ -17,15 +20,17 @@ class VacancyController extends Controller
     {
         $datavacancies = Vacancy::get();
 
-        return response()->json([
-            'count' => $datavacancies->count(),
-            'data' => $datavacancies,
-        ]);
+        return new VacancyCollection(Vacancy::get());
+        // return response()->json([
+        //     'count' => $datavacancies->count(),
+        //     'data' => $datavacancies,
+        // ]);
     }
 
-    public function indexFindOne($id)
+    public function indexFindOne(Vacancy $id)
     {
-        return Vacancy::find($id);
+        return new VacancyResource($id);
+        // return Vacancy::find($id);
     }
 
     /**
@@ -44,11 +49,12 @@ class VacancyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(VacancyRequest $request)
     {
-        $dataVancancy = request()->except('_token');
-        Vacancy::create($dataVancancy);
-        return response()->json($dataVancancy);
+        // $dataVancancy = request()->except('_token');
+        // Vacancy::create($dataVancancy);
+        $dataVacancies = Vacancy::create($request->all());
+        return response()->json($dataVacancies, 201);
     }
 
     /**
@@ -59,7 +65,6 @@ class VacancyController extends Controller
      */
     public function show(vacancy $vacancy)
     {
-        //
     }
 
     /**
@@ -80,6 +85,13 @@ class VacancyController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Vacancy $vacancy, $id)
+    {
+        $vacancy = Vacancy::findOrFail($id);
+        $vacancy->update($request->all());
+        return response()->json($vacancy);
+    }
+
+    public function patch(Request $request, Vacancy $vacancy, $id)
     {
         $vacancy = Vacancy::findOrFail($id);
         $vacancy->update($request->all());
