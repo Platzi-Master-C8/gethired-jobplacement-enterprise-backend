@@ -19,9 +19,21 @@ use Illuminate\Routing\Controller as BaseController;
  *         url=L5_SWAGGER_CONST_HOST
  *     ),
  *     @OA\Tag(
+ *         name="Vacancies",
+ *         description="API Endpoints of vacancies"
+ *     ),
+ *     @OA\Tag(
+ *         name="Interviews",
+ *         description="API Endpoints of interviews"
+ *     ),
+ *     @OA\Tag(
+ *         name="Companies",
+ *         description="API Endpoints of companies"
+ *     ),
+ *     @OA\Tag(
  *         name="Users",
  *         description="API Endpoints of Users"
- *     )
+ *     ),
  * )
  */
 class Controller extends BaseController
