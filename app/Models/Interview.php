@@ -14,16 +14,23 @@ class Interview extends Model
     protected $fillable = [
         'applicant_id',
         'vacancy_id',
-        'day',
-        'hour',
+        'date',
         'platform',
         'url',
         'type',
+        'active',
+        'status_finished',
+        'notes',
     ];
 
     public function applicant()
     {
         return $this->belongsTo(Applicant::class);
+    }
+
+    public function histories()
+    {
+        return $this->hasMany(InterviewHistory::class);
     }
 
     public function vacancy()
