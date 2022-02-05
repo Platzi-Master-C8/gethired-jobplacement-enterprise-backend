@@ -44,8 +44,8 @@ Route::get('v1/vacancies/{id}/applications', [ApplicationController::class, 'lis
 Route::post('v1/vacancies/{id}/applications', [ApplicationController::class, 'applyVacancy'])->name('vacancies.applications.apply');
 
 
-Route::prefix('interviews')->group(function () {
-    Route::name('interviews.')->group(function () {
+Route::prefix('v1/interviews')->group(function () {
+    Route::name('v1.interviews.')->group(function () {
         Route::get('', [InterviewController::class, 'index'])->name('index');
         Route::post('', [InterviewController::class, 'store'])->name('store');
 
@@ -56,6 +56,6 @@ Route::prefix('interviews')->group(function () {
     });
 });
 
-Route::get('v1/companies', [CompanyController::class, 'list'])->name('companies.list');
-Route::get('v1/companies/select', [CompanyController::class, 'listAsSelect'])->name('companies.list-select');
-Route::get('v1/companies/vacancies', [CompanyController::class, 'listWithVacancies'])->name('companies.list-with-vacancies');
+Route::get('v1/companies', [CompanyController::class, 'list'])->name('v1.companies.list');
+Route::get('v1/companies/select', [CompanyController::class, 'listAsSelect'])->name('v1.companies.list-select');
+Route::get('v1/companies/vacancies', [CompanyController::class, 'listWithVacancies'])->name('v1.companies.list-with-vacancies');
