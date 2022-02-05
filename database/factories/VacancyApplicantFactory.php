@@ -14,7 +14,7 @@ class VacancyApplicantFactory extends Factory
     public function definition()
     {
         return [
-            'aspiration_salary' => $this->faker->randomNumber(3),
+            //'aspiration_salary' => $this->faker->randomNumber(3),
         ];
     }
 }
