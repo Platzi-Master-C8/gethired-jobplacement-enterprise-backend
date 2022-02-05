@@ -9,6 +9,21 @@ use App\Http\Controllers\Controller;
 
 class InterviewController extends Controller
 {
+    /**
+     * @OA\Get(
+     *     tags={"Interviews"},
+     *     path="/api/v1/interviews",
+     *     summary="Get interview list",
+     *     @OA\Response(
+     *         response=200,
+     *         description="List interviews."
+     *     ),
+     *     @OA\Response(
+     *         response="default",
+     *         description="Ha ocurrido un error."
+     *     )
+     * )
+     */
     public function index()
     {
         $interviews = Interview::get();
@@ -19,6 +34,21 @@ class InterviewController extends Controller
         ]);
     }
 
+    /**
+     * @OA\Post(
+     *     tags={"Interviews"},
+     *     path="/api/v1/interviews",
+     *     summary="Store new interview",
+     *     @OA\Response(
+     *         response=201,
+     *         description="Store new interview."
+     *     ),
+     *     @OA\Response(
+     *         response="default",
+     *         description="Ha ocurrido un error."
+     *     )
+     * )
+     */
     public function store(Request $request)
     {
         $interview = Interview::create($request->all());
@@ -28,6 +58,30 @@ class InterviewController extends Controller
         ], 201);
     }
 
+    /**
+     * @OA\Get(
+     *     tags={"Interviews"},
+     *     path="/api/v1/interviews/{id}",
+     *     summary="Get data of an interview",     *
+     *     @OA\Parameter(
+     *          name="id",
+     *          description="Interview id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Show detail of an interview."
+     *     ),
+     *     @OA\Response(
+     *         response="default",
+     *         description="Ha ocurrido un error."
+     *     )
+     * )
+     */
     public function show(Interview $interview)
     {
         return response()->json([
@@ -36,6 +90,30 @@ class InterviewController extends Controller
         ]);
     }
 
+    /**
+     * @OA\Patch(
+     *     tags={"Interviews"},
+     *     path="/api/v1/interviews/{id}/reschedule",
+     *     summary="Reschedule an interview",
+     *     @OA\Parameter(
+     *          name="id",
+     *          description="Interview id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Reschedule an interview giving new date."
+     *     ),
+     *     @OA\Response(
+     *         response="default",
+     *         description="Ha ocurrido un error."
+     *     )
+     * )
+     */
     public function reschedule(Request $request, Interview $interview)
     {
         InterviewHistory::create([
@@ -51,7 +129,30 @@ class InterviewController extends Controller
         ]);
     }
 
-
+    /**
+     * @OA\Patch(
+     *     tags={"Interviews"},
+     *     path="/api/v1/interviews/{id}/cancel",
+     *     summary="Cancel an interview",
+     *     @OA\Parameter(
+     *          name="id",
+     *          description="Interview id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Cancel an interview."
+     *     ),
+     *     @OA\Response(
+     *         response="default",
+     *         description="Ha ocurrido un error."
+     *     )
+     * )
+     */
     public function cancel(Request $request, Interview $interview)
     {
         InterviewHistory::create([
@@ -68,6 +169,30 @@ class InterviewController extends Controller
         ]);
     }
 
+    /**
+     * @OA\Patch(
+     *     tags={"Interviews"},
+     *     path="/api/v1/interviews/{id}/finish",
+     *     summary="Finish an interview",
+     *     @OA\Parameter(
+     *          name="id",
+     *          description="Interview id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Finish an interview."
+     *     ),
+     *     @OA\Response(
+     *         response="default",
+     *         description="Ha ocurrido un error."
+     *     )
+     * )
+     */
     public function finish(Request $request, Interview $interview)
     {
         InterviewHistory::create([

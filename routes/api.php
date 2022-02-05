@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\v1\InterviewController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\v1\UserController;
@@ -41,6 +42,19 @@ Route::delete('/v1/vacancies/{id}', [VacancyController::class, 'destroy'])->name
 Route::patch('/v1/Vacancies/{id}', [VacancyController::class, 'patch'])->name('vancancies.patch');
 Route::get('v1/vacancies/{id}/applications', [ApplicationController::class, 'listApplicants'])->name('vacancies.applications.list');
 Route::post('v1/vacancies/{id}/applications', [ApplicationController::class, 'applyVacancy'])->name('vacancies.applications.apply');
+
+
+Route::prefix('interviews')->group(function () {
+    Route::name('interviews.')->group(function () {
+        Route::get('', [InterviewController::class, 'index'])->name('index');
+        Route::post('', [InterviewController::class, 'store'])->name('store');
+
+        Route::get('{id}', [InterviewController::class, 'show'])->name('show');
+        Route::patch('{id}/reschedule', [InterviewController::class, 'reschedule'])->name('reschedule');
+        Route::patch('{id}/cancel', [InterviewController::class, 'cancel'])->name('cancel');
+        Route::patch('{id}/finish', [InterviewController::class, 'finish'])->name('finish');
+    });
+});
 
 Route::get('v1/companies', [CompanyController::class, 'list'])->name('companies.list');
 Route::get('v1/companies/select', [CompanyController::class, 'listAsSelect'])->name('companies.list-select');
