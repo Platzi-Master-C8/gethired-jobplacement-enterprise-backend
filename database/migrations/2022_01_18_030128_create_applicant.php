@@ -30,7 +30,6 @@ class CreateApplicant extends Migration
 
             $table->integer('applicant_id');
             $table->integer('vacancy_id');
-            $table->string('aspiration_salary');
 
             $table->timestamps();
         });
@@ -43,9 +42,20 @@ class CreateApplicant extends Migration
             $table->string('platform');
             $table->string('url');
             $table->string('type');
+            $table->boolean('active')->default(1);
+            $table->string('status_finished')->nullable();
+            $table->string('notes')->nullable();
 
-            $table->dateTime('hour');
-            $table->dateTime('day');
+            $table->dateTime('date');
+
+            $table->timestamps();
+        });
+
+        Schema::create('interviews_history', function (Blueprint $table) {
+            $table->id();
+
+            $table->integer('interview_id');
+            $table->string('description');
 
             $table->timestamps();
         });
