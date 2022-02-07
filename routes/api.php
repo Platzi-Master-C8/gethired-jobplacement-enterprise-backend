@@ -43,10 +43,10 @@ Route::patch('/v1/vacancies/{id}', [VacancyController::class, 'patch'])->name('v
 Route::get('v1/vacancies/{id}/applications', [ApplicationController::class, 'listApplicants'])->name('vacancies.applications.list');
 Route::post('v1/vacancies/{id}/applications', [ApplicationController::class, 'applyVacancy'])->name('vacancies.applications.apply');
 
-Route::patch('v1/vacanciesStatusActive/{id}', [VacancyController::class, 'patchActive'])->name('status.active.patch');
-Route::patch('v1/vacanciesStatusInactive/{id}', [VacancyController::class, 'patchInactive'])->name('status.inactive.patch');
-Route::get('v1/vacanciesActives', [VacancyController::class, 'vacanciesActives'])->name('vacancies.allActives');
-Route::get('v1/vacanciesInactives', [VacancyController::class, 'vacanciesInactives'])->name('vacancies.allInactives');
+Route::patch('v1/vacancies-status-active/{id}', [VacancyController::class, 'patchActive'])->name('status.active.patch');
+Route::patch('v1/vacancies-status-inactive/{id}', [VacancyController::class, 'patchInactive'])->name('status.inactive.patch');
+Route::get('v1/vacancies-actives', [VacancyController::class, 'vacanciesActives'])->name('vacancies.allActives');
+Route::get('v1/vacancies-inactives', [VacancyController::class, 'vacanciesInactives'])->name('vacancies.allInactives');
 
 Route::prefix('v1/interviews')->group(function () {
     Route::name('v1.interviews.')->group(function () {
