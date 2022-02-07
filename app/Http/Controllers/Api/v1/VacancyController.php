@@ -19,9 +19,7 @@ class VacancyController extends Controller
     public function index()
     {
 
-
         return new VacancyCollection(Vacancy::with("company")->get());
-
 
         // return response()->json([
         //     '
@@ -112,5 +110,25 @@ class VacancyController extends Controller
         return response()->json([
             'message' => 'Success'
         ],);
+    }
+
+    public function patchActive(Request $request)
+    {
+        $vacancy_id = $request->id;
+        $vacancy = Vacancy::find($vacancy_id);
+        $vacancy->status = true;
+        $vacancy->save();
+
+        return response()->json($vacancy);
+    }
+
+    public function patchInactive(Request $request)
+    {
+        $vacancy_id = $request->id;
+        $vacancy = Vacancy::find($vacancy_id);
+        $vacancy->status = false;
+        $vacancy->save();
+
+        return response()->json($vacancy);
     }
 }

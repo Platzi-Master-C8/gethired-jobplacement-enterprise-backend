@@ -16,6 +16,7 @@ class VacancyResource extends JsonResource
     {
         return [
             'id'                    =>  $this->id,
+            'name'                  =>  $this->name,
             'user_id'               =>  $this->user_id,
             'postulation_deadline'  =>  $this->postulation_deadline,
             'description'           =>  $this->description,
