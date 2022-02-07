@@ -122,13 +122,12 @@ class VacancyController extends Controller
         return response()->json($vacancy);
     }
 
-    public function patchInactive(Request $request)
+    public function vacanciesActives()
     {
-        $vacancy_id = $request->id;
-        $vacancy = Vacancy::find($vacancy_id);
-        $vacancy->status = false;
-        $vacancy->save();
-
-        return response()->json($vacancy);
+        return new VacancyCollection(Vacancy::where('status', 1)->OrderBy('updated_at', 'desc')->get());
+    }
+    public function vacanciesInactives()
+    {
+        return new VacancyCollection(Vacancy::where('status', 0)->OrderBy('updated_at', 'desc')->get());
     }
 }

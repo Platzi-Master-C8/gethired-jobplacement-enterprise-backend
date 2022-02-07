@@ -4,6 +4,7 @@
 namespace Database\Factories;
 
 use App\Models\Company;
+use App\Models\User;
 use App\Models\Vacancy;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -28,7 +29,7 @@ class VacancyFactory extends Factory
         return [
 
             'name' => $this->faker->randomElement(['Front-end developer', 'Back-end developer', 'Data Analyst', 'UI Desing', 'UX Design']),
-            'user_id' => $this->faker->uuid(),
+            'user_id' => User::factory(),
             'postulation_deadline' => $this->faker->date(),
             'description' => $this->faker->paragraph(),
             'status' => $this->faker->boolean(),
