@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\v1\InterviewController;
+use App\Http\Controllers\Api\v1\SkillController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\v1\UserController;
@@ -48,18 +49,36 @@ Route::patch('v1/vacanciesStatusInactive/{id}', [VacancyController::class, 'patc
 Route::get('v1/vacanciesActives', [VacancyController::class, 'vacanciesActives'])->name('vacancies.allActives');
 Route::get('v1/vacanciesInactives', [VacancyController::class, 'vacanciesInactives'])->name('vacancies.allInactives');
 
-Route::prefix('v1/interviews')->group(function () {
-    Route::name('v1.interviews.')->group(function () {
-        Route::get('', [InterviewController::class, 'index'])->name('index');
-        Route::post('', [InterviewController::class, 'store'])->name('store');
+Route::prefix('v1')->group(function () {
+    Route::name('v1.')->group(function () {
+        // interview routes
+        Route::prefix('interviews')->group(function () {
+            Route::name('interviews.')->group(function () {
+                Route::get('', [InterviewController::class, 'index'])->name('index');
+                Route::post('', [InterviewController::class, 'store'])->name('store');
 
-        Route::get('{id}', [InterviewController::class, 'show'])->name('show');
-        Route::patch('{id}/reschedule', [InterviewController::class, 'reschedule'])->name('reschedule');
-        Route::patch('{id}/cancel', [InterviewController::class, 'cancel'])->name('cancel');
-        Route::patch('{id}/finish', [InterviewController::class, 'finish'])->name('finish');
+                Route::get('{id}', [InterviewController::class, 'show'])->name('show');
+                Route::patch('{id}/reschedule', [InterviewController::class, 'reschedule'])->name('reschedule');
+                Route::patch('{id}/cancel', [InterviewController::class, 'cancel'])->name('cancel');
+                Route::patch('{id}/finish', [InterviewController::class, 'finish'])->name('finish');
+            });
+        });
+
+        // company routes
+        Route::prefix('companies')->group(function () {
+            Route::name('companies.')->group(function () {
+                Route::get('', [CompanyController::class, 'list'])->name('list');
+                Route::get('select', [CompanyController::class, 'listAsSelect'])->name('list-select');
+                Route::get('vacancies', [CompanyController::class, 'listWithVacancies'])->name('list-with-vacancies');
+            });
+        });
+
+        // skill routes
+        Route::prefix('skills')->group(function () {
+            Route::name('skills.')->group(function () {
+                Route::get('', [SkillController::class, 'list'])->name('list');
+                Route::post('', [SkillController::class, 'store'])->name('store');
+            });
+        });
     });
 });
-
-Route::get('v1/companies', [CompanyController::class, 'list'])->name('v1.companies.list');
-Route::get('v1/companies/select', [CompanyController::class, 'listAsSelect'])->name('v1.companies.list-select');
-Route::get('v1/companies/vacancies', [CompanyController::class, 'listWithVacancies'])->name('v1.companies.list-with-vacancies');
