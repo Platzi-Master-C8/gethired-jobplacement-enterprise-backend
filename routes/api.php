@@ -40,7 +40,7 @@ Route::get('/v1/vacancies/{id}', [VacancyController::class, 'indexFindOne'])->na
 Route::post('/v1/vacancies', [VacancyController::class, 'store'])->name('vacancies.store');
 Route::put('/v1/vacancies/{id}', [VacancyController::class, 'update'])->name('vacancies.update');
 Route::delete('/v1/vacancies/{id}', [VacancyController::class, 'destroy'])->name('vacancies.destroy');
-Route::patch('/v1/vacancies/{id}', [VacancyController::class, 'patch'])->name('vancancies.patch');
+// Route::patch('/v1/vacancies/{id}', [VacancyController::class, 'patch'])->name('vancancies.patch');
 Route::get('v1/vacancies/{id}/applications', [ApplicationController::class, 'listApplicants'])->name('vacancies.applications.list');
 Route::post('v1/vacancies/{id}/applications', [ApplicationController::class, 'applyVacancy'])->name('vacancies.applications.apply');
 
