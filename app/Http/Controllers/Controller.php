@@ -31,6 +31,10 @@ use Illuminate\Routing\Controller as BaseController;
  *         description="API Endpoints of companies"
  *     ),
  *     @OA\Tag(
+ *         name="Skills",
+ *         description="API Endpoints of skills"
+ *     ),
+ *     @OA\Tag(
  *         name="Users",
  *         description="API Endpoints of Users"
  *     ),
