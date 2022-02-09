@@ -48,6 +48,7 @@ Route::patch('v1/vacancies-status-active/{id}', [VacancyController::class, 'patc
 Route::patch('v1/vacancies-status-inactive/{id}', [VacancyController::class, 'patchInactive'])->name('status.inactive.patch');
 Route::get('v1/vacancies-actives', [VacancyController::class, 'vacanciesActives'])->name('vacancies.allActives');
 Route::get('v1/vacancies-inactives', [VacancyController::class, 'vacanciesInactives'])->name('vacancies.allInactives');
+Route::post('v1/filter', [VacancyController::class, 'filter'])->name('vacancies.filter');
 
 Route::prefix('v1')->group(function () {
     Route::name('v1.')->group(function () {

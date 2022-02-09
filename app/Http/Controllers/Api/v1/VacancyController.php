@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Api\v1;
 
+use App\Classes\Search\SearchBuilder;
 use App\Http\Controllers\Controller;
 use App\Models\Vacancy;
 use Illuminate\Http\Request;
 use App\Http\Requests\Vacancy as VacancyRequest;
 use App\Http\Resources\v1\VacancyCollection;
 use App\Http\Resources\v1\VacancyResource;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class VacancyController extends Controller
 {
@@ -18,12 +20,8 @@ class VacancyController extends Controller
      *     summary="Get vacancies list",
      *     @OA\Response(
      *         response=200,
-     *         description="This route get all vacancies of data base."
+     *         description="This route gets all vacancies of the database in a format JSON."
      *     ),
-     *     @OA\Response(
-     *         response="default",
-     *         description="Ha ocurrido un error."
-     *     )
      * )
      */
 
@@ -39,12 +37,8 @@ class VacancyController extends Controller
      *     summary="Get a vacancy",
      *     @OA\Response(
      *         response=200,
-     *         description="through the id sent in the request obtains a vacancy specific"
+     *         description="gets the vacancy corresponding to the submitted ID"
      *     ),
-     *     @OA\Response(
-     *         response="default",
-     *         description="Ha ocurrido un error."
-     *     )
      * )
      */
     public function indexFindOne(Vacancy $id)
@@ -63,10 +57,6 @@ class VacancyController extends Controller
      *     @OA\Response(
      *         response=201,
      *         description="Save a new vacancy in the vacancies table and return a JSON with all data save."
-     *     ),
-     *     @OA\Response(
-     *         response="default",
-     *         description="Ha ocurrido un error."
      *     ),
      * * )
      */
@@ -107,6 +97,17 @@ class VacancyController extends Controller
     //     return response()->json($vacancy);
     // }
 
+    /**
+     * @OA\Delete(
+     *     tags={"Vacancies"},
+     *     path="/api/v1/vacancies/{id}",
+     *     summary="Eliminate vacancy",
+     *     @OA\Response(
+     *         response=200,
+     *         description="Eliminate a vacancy with ID assigned in the request"
+     *     ),
+     * )
+     */
 
     public function destroy($id)
     {
@@ -117,13 +118,14 @@ class VacancyController extends Controller
     }
 
     /**
-     * @OA\Get(
+     * @OA\Patch(
      *     tags={"Vacancies"},
      *     path="/api/v1/vacancies-status-active/{id}",
      *     summary="Activate vacancy",
      *     @OA\Response(
      *         response=200,
-     *         description="Change the value of the status to true of field STATUS in vacancies table"
+     *         description="Change the value of the status to true of field STATUS in vacancies table ,and
+     * response with the vacancy in JSON FORMAT"
      *     ),
      *     @OA\Response(
      *         response="default",
@@ -135,7 +137,7 @@ class VacancyController extends Controller
     public function patchActive(Request $request)
     {
         $vacancy_id = $request->id;
-        $vacancy = Vacancy::find($vacancy_id);
+        $vacancy = Vacancy::findOrFail($vacancy_id);
         $vacancy->status = true;
         $vacancy->save();
 
@@ -143,7 +145,7 @@ class VacancyController extends Controller
     }
 
     /**
-     * @OA\Get(
+     * @OA\Patch(
      *     tags={"Vacancies"},
      *     path="/api/v1/vacancies-status-inactive/{id}",
      *     summary="Inactivate vacancy",
@@ -161,7 +163,7 @@ class VacancyController extends Controller
     public function patchInactive(Request $request)
     {
         $vacancy_id = $request->id;
-        $vacancy = Vacancy::find($vacancy_id);
+        $vacancy = Vacancy::findOrFail($vacancy_id);
         $vacancy->status = false;
         $vacancy->save();
 
@@ -207,5 +209,32 @@ class VacancyController extends Controller
     public function vacanciesInactives()
     {
         return new VacancyCollection(Vacancy::where('status', 0)->OrderBy('updated_at', 'desc')->get());
+    }
+
+    /**
+     * @OA\Post(
+     *     tags={"Vacancies"},
+     *     path="/api/v1/filter?{nameFilter}={value}",
+     *     summary="Get vacancies or vacancies through filters",
+     *     @OA\Response(
+     *         response=200,
+     *         description=""
+     *     ),
+     *     @OA\Response(
+     *         response="default",
+     *         description="Ha ocurrido un error."
+     *     )
+     * )
+     */
+    public function filter(Request $request)
+    {
+
+        //Build research motor
+        $builder = new SearchBuilder('Vacancy', $request);
+        //Applicate filter
+        $query = $builder->filter();
+        //return json query
+        $query = $builder->filter();
+        return response()->json($query->get());
     }
 }
