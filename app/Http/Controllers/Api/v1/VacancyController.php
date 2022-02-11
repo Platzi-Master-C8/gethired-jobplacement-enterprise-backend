@@ -17,10 +17,19 @@ class VacancyController extends Controller
      * @OA\Get(
      *     tags={"Vacancies"},
      *     path="/api/v1/vacancies",
-     *     summary="Get vacancies list",
-     *     @OA\Response(
+     *     operationId="getVacanciesList",
+     *     summary="Get list of vacancies",
+     *     description="Returns list of projects",
+     *
+     *      @OA\Response(
      *         response=200,
-     *         description="This route gets all vacancies of the database in a format JSON."
+     *         description="Successful operation.",
+     *         @OA\JsonContent(ref="#/components/schemas/VacancyResource")
+     *     ),
+     *
+     *      @OA\Response(
+     *          response=500,
+     *          description="Error Server"
      *     ),
      * )
      */
@@ -34,13 +43,25 @@ class VacancyController extends Controller
      * @OA\Get(
      *     tags={"Vacancies"},
      *     path="/api/v1/vacancies/{id}",
-     *     summary="Get a vacancy",
+     *     operationId="getProjectById",
+     *     summary=""Get a vacancy information"",
+     *     @OA\Parameter(
+     *          name="id",
+     *          description="Vacancy id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
      *     @OA\Response(
      *         response=200,
-     *         description="gets the vacancy corresponding to the submitted ID"
+     *         description="Successful operation.",
+     *         @OA\JsonContent(ref="#/components/schemas/Vacancy")
      *     ),
      * )
      */
+
     public function indexFindOne(Vacancy $id)
     {
         return new VacancyResource($id);
@@ -52,6 +73,7 @@ class VacancyController extends Controller
      *     path="/api/v1/vacancies",
      *     summary="Store a new vacancy",
      *     @OA\RequestBody(
+     *
      *          required=true,
      *      ),
      *     @OA\Response(
