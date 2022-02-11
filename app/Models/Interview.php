@@ -14,7 +14,6 @@ class Interview extends Model
 
     protected $fillable = [
         'user_id',
-        'company_id',
         'applicant_id',
         'vacancy_id',
         'platform',
@@ -26,28 +25,13 @@ class Interview extends Model
         'date',
     ];
 
-    // public function applicant()
-    // {
-    //     return $this->belongsTo(Applicant::class);
-    // }
+     public function histories()
+     {
+         return $this->hasMany(InterviewHistory::class);
+     }
 
-    // public function histories()
-    // {
-    //     return $this->hasMany(InterviewHistory::class);
-    // }
-
-    // public function vacancy()
-    // {
-    //     return $this->belongsTo(Vacancy::class);
-    // }
-
-    public function user(): BelongsTo
+    public function vacancy()
     {
-        return $this->belongsTo(User::class);
-    }
-
-    public function vacancy_applicant(): BelongsTo
-    {
-        return $this->belongsTo(VacancyApplicant::class);
+        return $this->belongsTo(Vacancy::class);
     }
 }

@@ -39,6 +39,10 @@ class InterviewController extends Controller
      *     tags={"Interviews"},
      *     path="/api/v1/interviews",
      *     summary="Store new interview",
+     *     @OA\RequestBody(
+     *          required=true,
+     *          @OA\JsonContent(ref="#/components/schemas/Interview")
+     *      ),
      *     @OA\Response(
      *         response=201,
      *         description="Store new interview."
