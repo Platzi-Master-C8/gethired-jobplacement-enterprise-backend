@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Applicant extends Model
 {
@@ -18,4 +19,9 @@ class Applicant extends Model
         'link_portfolio',
         'years_experience',
     ];
+
+    public function vacancies_applicants(): HasMany
+    {
+        return $this->hasMany(VacancyApplicant::class);
+    }
 }

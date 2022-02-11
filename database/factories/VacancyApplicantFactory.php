@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Applicant;
+use App\Models\Vacancy;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class VacancyApplicantFactory extends Factory
@@ -14,7 +16,8 @@ class VacancyApplicantFactory extends Factory
     public function definition()
     {
         return [
-            //'aspiration_salary' => $this->faker->randomNumber(3),
+            'applicant_id' => Applicant::factory(),
+            'vacancy_id' => Vacancy::factory(),
         ];
     }
 }

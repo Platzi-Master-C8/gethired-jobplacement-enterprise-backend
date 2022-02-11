@@ -5,12 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Vacancy extends Model
 {
     use HasFactory;
 
     protected $table = 'vacancies';
+
+
 
     protected $fillable = [
         'name',
@@ -38,8 +41,18 @@ class Vacancy extends Model
         return $this->belongsTo(Company::class);
     }
 
-    public function applicants()
+    public function applicants(): HasMany
     {
         return $this->hasMany(VacancyApplicant::class);
     }
+
+    // public function company(): BelongsTo
+    // {
+    //     return $this->belongsTo(Company::class);
+    // }
+
+    // public function applicants()
+    // {
+    //     return $this->hasMany(VacancyApplicant::class);
+    // }
 }

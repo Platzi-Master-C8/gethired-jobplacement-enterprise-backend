@@ -25,42 +25,33 @@ class CreateApplicant extends Migration
             $table->timestamps();
         });
 
-        Schema::create('vacancies_applicants', function (Blueprint $table) {
-            $table->id();
+        // Schema::create('vacancies_applicants', function (Blueprint $table) {
+        //     $table->id();
 
-            $table->integer('applicant_id');
-            $table->integer('vacancy_id');
+        //     $table->integer('applicant_id');
+        //     $table->integer('vacancy_id');
 
-            $table->timestamps();
-        });
+        //     $table->timestamps();
+        // });
 
-        Schema::create('interviews', function (Blueprint $table) {
-            $table->id();
+        //Schema::create('interviews', function (Blueprint $table) {
+        //     $table->id();
 
-            $table->integer('applicant_id');
-            $table->integer('vacancy_id');
-            $table->string('platform');
-            $table->string('url');
-            $table->string('type');
-            $table->boolean('active')->default(1);
-            $table->string('status_finished')->nullable();
-            $table->string('notes')->nullable();
+        //     $table->integer('applicant_id');
+        //     $table->integer('vacancy_id');
+        //     $table->string('platform');
+        //     $table->string('url');
+        //     $table->string('type');
+        //     $table->boolean('active')->default(1);
+        //     $table->string('status_finished')->nullable();
+        //     $table->string('notes')->nullable();
 
-            $table->dateTime('date');
+        //     $table->dateTime('date');
 
-            $table->timestamps();
-        });
+        //     $table->timestamps();
+        // });
 
-        Schema::create('interviews_history', function (Blueprint $table) {
-            $table->id();
-
-            $table->integer('interview_id');
-            $table->string('description');
-
-            $table->timestamps();
-        });
     }
-
     /**
      * Reverse the migrations.
      *
@@ -69,7 +60,7 @@ class CreateApplicant extends Migration
     public function down()
     {
         Schema::dropIfExists('applicants');
-        Schema::dropIfExists('vacancies_applicants');
-        Schema::dropIfExists('interviews');
+        // Schema::dropIfExists('vacancies_applicants');
+        // Schema::dropIfExists('interviews');
     }
 }

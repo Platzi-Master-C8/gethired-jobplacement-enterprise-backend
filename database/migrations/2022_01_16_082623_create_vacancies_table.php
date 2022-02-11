@@ -15,10 +15,9 @@ class CreateVacanciesTable extends Migration
     {
         Schema::create('vacancies', function (Blueprint $table) {
             $table->id();
-
-            $table->integer('user_id');
             $table->string('name');
-            $table->string('postulation_deadline', 20)->nullable();
+            $table->string('user_id');
+            $table->dateTime('postulation_deadline', 20)->nullable();
             $table->text('description');
             $table->boolean('status');
             $table->string('salary', 10);
@@ -30,7 +29,7 @@ class CreateVacanciesTable extends Migration
             $table->string('minimum_experience', 30);
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('company_id')->references('id')->on('companies');
         });
     }
 
