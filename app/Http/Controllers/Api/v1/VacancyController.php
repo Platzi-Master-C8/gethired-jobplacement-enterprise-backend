@@ -35,7 +35,6 @@ class VacancyController extends Controller
      *      )
      *     )
      */
-
     public function index()
     {
         return new VacancyCollection(Vacancy::with("company")->get());
@@ -73,9 +72,6 @@ class VacancyController extends Controller
      *      )
      *     )
      */
-
-
-
     public function indexFindOne(Vacancy $id)
     {
         return new VacancyResource($id);
@@ -83,7 +79,7 @@ class VacancyController extends Controller
 
     /**
      * @OA\Post(
-     *      path="/v1/vacancies",
+     *      path="/api/v1/vacancies",
      *      operationId="storeVacancy",
      *      tags={"Vacancies"},
      *      summary="Store new vacancy",
@@ -99,7 +95,6 @@ class VacancyController extends Controller
      *       ),
      * )
      */
-
     public function store(VacancyRequest $request)
     {
         $dataVacancies = Vacancy::create($request->all());
@@ -149,7 +144,6 @@ class VacancyController extends Controller
      *      )
      * )
      */
-
     public function update(Request $request, Vacancy $vacancy, $id)
     {
         $vacancy = Vacancy::findOrFail($id);
@@ -198,12 +192,12 @@ class VacancyController extends Controller
         Vacancy::destroy($id);
         return response()->json([
             'message' => 'Success'
-        ],);
+        ]);
     }
 
     /**
      * @OA\Patch(
-     *      path="/v1/vacancies-status-active/{id}",
+     *      path="/api/v1/vacancies-status-active/{id}",
      *      operationId="updateVacancy",
      *      tags={"Vacancies"},
      *      summary="Update status active vacancy",
@@ -244,7 +238,6 @@ class VacancyController extends Controller
      *      )
      * )
      */
-
     public function patchActive(Request $request)
     {
         $vacancy_id = $request->id;
@@ -257,7 +250,7 @@ class VacancyController extends Controller
 
     /**
      * @OA\Patch(
-     *      path="v1/vacancies-status-inactive/{id}",
+     *      path="/api/v1/vacancies-status-inactive/{id}",
      *      operationId="updateVacancy",
      *      tags={"Vacancies"},
      *      summary="Update status false vacancy",
@@ -298,7 +291,6 @@ class VacancyController extends Controller
      *      )
      * )
      */
-
     public function patchInactive(Request $request)
     {
         $vacancy_id = $request->id;
@@ -312,7 +304,7 @@ class VacancyController extends Controller
     /**
      * @OA\Get(
      *      tags={"Vacancies"},
-     *      path="v1/vacancies-actives",
+     *      path="/api/v1/vacancies-actives",
      *      operationId="getVacanciesList",
      *      summary="Get list of active Vacancies",
      *      description="Returns list of active vacancies",
@@ -331,8 +323,6 @@ class VacancyController extends Controller
      *      )
      *     )
      */
-
-
     public function vacanciesActives()
     {
         return new VacancyCollection(Vacancy::where('status', 1)->OrderBy('updated_at', 'desc')->get());
@@ -341,7 +331,7 @@ class VacancyController extends Controller
     /**
      * @OA\Get(
      *      tags={"Vacancies"},
-     *      path="vv1/vacancies-inactives",
+     *      path="/api/v1/vacancies-inactives",
      *      operationId="getVacanciesList",
      *      summary="Get list of inactive Vacancies",
      *      description="Returns list of inactive vacancies",
@@ -360,7 +350,6 @@ class VacancyController extends Controller
      *      )
      *     )
      */
-
 
     public function vacanciesInactives()
     {
@@ -386,10 +375,8 @@ class VacancyController extends Controller
      * )
      */
 
-
     public function filter(Request $request)
     {
-
         //Build research motor
         $builder = new SearchBuilder('Vacancy', $request);
         //Applicate filter
