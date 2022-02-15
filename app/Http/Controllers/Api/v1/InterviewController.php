@@ -55,12 +55,11 @@ class InterviewController extends Controller
      */
     public function store(Request $request)
     {
-
-    dd($request->all());
-        $interview = Interview::create($request->getContent());
+        $interview = Interview::create($request->all());
 
         return response()->json([
-            'message' => 'Interview store successfully!'
+            'message' => 'Interview store successfully!',
+            'data' => $interview,
         ], 201);
     }
 

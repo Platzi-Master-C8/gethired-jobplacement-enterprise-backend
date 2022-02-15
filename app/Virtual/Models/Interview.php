@@ -18,11 +18,11 @@ class Interview
      *     title="Date",
      *     description="Date interview",
      *     example="2022-05-01 13:50:45",
-     *     format="datetime",
+     *     format="datetimetz",
      *     type="string"
      * )
      *
-     * @var \DateTime
+     * @var \DateTimeZone
      */
     public $date;
 

@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Applicant;
 use App\Models\Company;
 use App\Models\Interview;
 use App\Models\Skill;

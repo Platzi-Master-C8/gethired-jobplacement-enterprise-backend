@@ -45,14 +45,4 @@ class Vacancy extends Model
     {
         return $this->hasMany(VacancyApplicant::class);
     }
-
-    // public function company(): BelongsTo
-    // {
-    //     return $this->belongsTo(Company::class);
-    // }
-
-    // public function applicants()
-    // {
-    //     return $this->hasMany(VacancyApplicant::class);
-    // }
 }

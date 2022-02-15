@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\v1\InterviewController;
 use App\Http\Controllers\Api\v1\SkillController;
+use App\Http\Controllers\Api\v1\TypeWorkController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\v1\UserController;
@@ -79,6 +80,16 @@ Route::prefix('v1')->group(function () {
             Route::name('skills.')->group(function () {
                 Route::get('', [SkillController::class, 'list'])->name('list');
                 Route::post('', [SkillController::class, 'store'])->name('store');
+            });
+        });
+
+        // types work routes
+        Route::prefix('types-work')->group(function () {
+            Route::name('types-work.')->group(function () {
+                Route::get('', [TypeWorkController::class, 'list'])->name('list');
+                Route::post('', [TypeWorkController::class, 'store'])->name('store');
+                Route::put('{typeWork}', [TypeWorkController::class, 'update'])->name('update');
+                Route::delete('{typeWork}', [TypeWorkController::class, 'destroy'])->name('destroy');
             });
         });
     });

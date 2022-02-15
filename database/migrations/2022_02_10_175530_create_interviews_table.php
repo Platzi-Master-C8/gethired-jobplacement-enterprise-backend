@@ -26,7 +26,7 @@ class CreateInterviewsTable extends Migration
             $table->string('status_finished')->nullable();
             $table->string('notes')->nullable();
 
-            $table->dateTime('date');
+            $table->dateTimeTz('date');
 
             $table->foreign('vacancy_id')->references('id')->on('vacancies');
 

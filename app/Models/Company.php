@@ -25,6 +25,6 @@ class Company extends Model
 
     public function vacancies(): HasMany
     {
-        return $this->hasMany(Vacancy::class);
+        return $this->hasMany(Vacancy::class, 'company_id', 'id');
     }
 }

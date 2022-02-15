@@ -23,7 +23,7 @@ class InterviewFactory extends Factory
         return [
             'user_id' => User::factory(),
             'company_id' => Company::factory(),
-            'applicant_id' => Applicant::factory(),
+            'applicant_id' => $this->faker->randomNumber(),
             'vacancy_id' => Vacancy::factory(),
             'platform' => $this->faker->randomElement(['Google Meet', 'Slack', 'Skype', 'Zoom']),
             'url' => $this->faker->url(),
@@ -31,7 +31,7 @@ class InterviewFactory extends Factory
             'active' => $this->faker->boolean(),
             'status_finished' => $this->faker->randomElement(['Canceled', 'Finished']),
             'notes' => $this->faker->paragraph(),
-            'date' => $this->faker->date(),
+            'date' => $this->faker->dateTime(),
         ];
     }
 }
