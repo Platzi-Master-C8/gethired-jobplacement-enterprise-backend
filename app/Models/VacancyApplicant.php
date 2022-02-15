@@ -18,18 +18,8 @@ class VacancyApplicant extends Model
         'vacancy_id',
     ];
 
-    public function interviews(): HasMany
-    {
-        return $this->hasMany(Interview::class);
-    }
-
     public function vacancy(): BelongsTo
     {
         return $this->belongsTo(Vacancy::class);
-    }
-
-    public function applicant(): BelongsTo
-    {
-        return $this->belongsTo(Applicant::class);
     }
 }

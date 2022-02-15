@@ -17,7 +17,7 @@ class CreateSkillsTable extends Migration
             $table->id();
             $table->string('name');
             $table->integer('count')->default(0);
-            $table->timestamps();
+            $table->timestampsTz();
         });
 
         Schema::create('skills_vacancies', function (Blueprint $table) {

@@ -27,7 +27,7 @@ class CreateVacanciesTable extends Migration
             $table->text('skills');
             $table->string('hours_per_week', 30);
             $table->string('minimum_experience', 30);
-            $table->timestamps();
+            $table->timestampsTz();
 
             $table->foreign('company_id')->references('id')->on('companies');
         });

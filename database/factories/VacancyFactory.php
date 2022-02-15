@@ -30,7 +30,7 @@ class VacancyFactory extends Factory
 
             'name' => $this->faker->randomElement(['Front-end developer', 'Back-end developer', 'Data Analyst', 'UI Desing', 'UX Design']),
             'user_id' => User::factory(),
-            'postulation_deadline' => $this->faker->date(),
+            'postulation_deadline' => $this->faker->dateTime(),
             'description' => $this->faker->paragraph(),
             'status' => $this->faker->boolean(),
             'salary' => $this->faker->numberBetween($min = 1150000, $max = 10000000),

@@ -23,20 +23,7 @@ class Company extends Model
         'active'
     ];
 
-    // public function vacancies(): HasMany
-    // {
-    //     return $this->hasMany(Vacancy::class);
-    // }
-    public function users(): HasMany
-    {
-        return $this->hasMany(User::class);
-    }
-
     public function vacancies(): HasMany
-    {
-        return $this->hasMany(Vacancy::class);
-    }
-    public function interviews(): HasMany
     {
         return $this->hasMany(Vacancy::class);
     }

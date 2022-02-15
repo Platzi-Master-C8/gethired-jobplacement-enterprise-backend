@@ -15,7 +15,7 @@ class CreateInterviewsTable extends Migration
     {
         Schema::create('interviews', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
+            $table->string('user_id');
 
             $table->integer('applicant_id');
             $table->integer('vacancy_id');
@@ -30,7 +30,7 @@ class CreateInterviewsTable extends Migration
 
             $table->foreign('vacancy_id')->references('id')->on('vacancies');
 
-            $table->timestamps();
+            $table->timestampsTz();
         });
 
         Schema::create('interviews_history', function (Blueprint $table) {
@@ -39,7 +39,7 @@ class CreateInterviewsTable extends Migration
             $table->integer('interview_id');
             $table->string('description');
 
-            $table->timestamps();
+            $table->timestampsTz();
 
             $table->foreign('interview_id')->references('id')->on('interviews');
         });

@@ -25,7 +25,7 @@ class CreateCompaniesTable extends Migration
             $table->string('city');
             $table->boolean('active')->default(1);
 
-            $table->timestamps();
+            $table->timestampsTz();
         });
     }
 

@@ -22,7 +22,7 @@ class CreateVacanciesApplicantsTable extends Migration
 
             $table->foreign('vacancy_id')->references('id')->on('vacancies');
 
-            $table->timestamps();
+            $table->timestampsTz();
         });
     }
 
