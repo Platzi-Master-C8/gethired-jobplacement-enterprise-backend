@@ -23,7 +23,7 @@ class ApplicationController extends Controller
     public function applyVacancy(Request $request, Vacancy $vacancy)
     {
         try {
-            VacancyApplicant::created([
+            VacancyApplicant::create([
                 'vacancy_id' => $vacancy->id,
                 'applicant_id' => $request->applicant_id,
             ]);
