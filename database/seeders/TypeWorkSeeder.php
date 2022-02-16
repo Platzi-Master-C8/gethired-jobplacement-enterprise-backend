@@ -14,6 +14,7 @@ class TypeWorkSeeder extends Seeder
      */
     public function run()
     {
+
         TypeWork::create([
             'name' => 'Remote',
         ]);

@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\v1;
 
+use App\Http\Resources\v1\TypeWorkResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class VacancyResource extends JsonResource

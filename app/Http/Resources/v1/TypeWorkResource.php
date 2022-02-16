@@ -2,12 +2,12 @@
 
 namespace App\Http\Resources\v1;
 
-use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Http\Resources\Json\JsonResource;
 
-class VacancyCollection extends ResourceCollection
+class TypeWorkResource extends JsonResource
 {
     /**
-     * Transform the resource collection into an array.
+     * Transform the resource into an array.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
@@ -15,7 +15,8 @@ class VacancyCollection extends ResourceCollection
     public function toArray($request)
     {
         return [
-            'data' => $this->collection,
+            'id'                    =>  $this->id,
+            'name'                  =>  $this->name,
         ];
     }
 }

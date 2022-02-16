@@ -17,23 +17,16 @@ class VacancyController extends Controller
      * @OA\Get(
      *      tags={"Vacancies"},
      *      path="/api/v1/vacancies",
-     *      operationId="getVacanciesList",
      *      summary="Get list of Vacancies",
-     *      description="Returns list of vacancies",
      *      @OA\Response(
      *          response=200,
-     *          description="Successful operation",
-     *
+     *          description="Returns list of vacancies."
      *       ),
      *      @OA\Response(
-     *          response=401,
-     *          description="Unauthenticated",
-     *      ),
-     *      @OA\Response(
-     *          response=403,
-     *          description="Forbidden"
-     *      )
+     *         response="default",
+     *         description="Ha ocurrido un error."
      *     )
+     * )
      */
 
     public function index()
@@ -45,7 +38,6 @@ class VacancyController extends Controller
      * @OA\Get(
      *      tags={"Vacancies"},
      *      path="/api/v1/vacancies/{id}",
-     *      operationId="getVacancy",
      *      summary="Get data of a Vacancy ",
      *       @OA\Parameter(
      *          name="id",
@@ -59,19 +51,14 @@ class VacancyController extends Controller
      *
      *      @OA\Response(
      *          response=200,
-     *          description="Successful operation",
-     *
-     *
+     *          description="Show detail of a vacancy",
      *       ),
-     *      @OA\Response(
-     *          response=401,
-     *          description="Unauthenticated",
-     *      ),
-     *      @OA\Response(
-     *          response=403,
-     *          description="Forbidden"
-     *      )
+     *
+     *     @OA\Response(
+     *         response="default",
+     *         description="Ha ocurrido un error."
      *     )
+     * )
      */
 
 
@@ -83,36 +70,39 @@ class VacancyController extends Controller
 
     /**
      * @OA\Post(
-     *      path="/v1/vacancies",
-     *      operationId="storeVacancy",
      *      tags={"Vacancies"},
+     *      path="/api/v1/vacancies",
      *      summary="Store new vacancy",
-     *      description="Returns vacancy data",
      *      @OA\RequestBody(
      *          required=true,
-     *
+     *           @OA\JsonContent(ref="#/components/schemas/Vacancy")
      *      ),
      *      @OA\Response(
      *          response=201,
-     *          description="Successful operation",
-     *
+     *          description="Store new vacancy.",
      *       ),
+     *      @OA\Response(
+     *         response="default",
+     *         description="Ha ocurrido un error."
+     *     )
      * )
      */
 
     public function store(VacancyRequest $request)
     {
         $dataVacancies = Vacancy::create($request->all());
-        return response()->json($dataVacancies, 201);
+        return response()->json([
+            'message' => 'Vacancy store successfully',
+            'data' => $dataVacancies
+        ], 201);
     }
 
     /**
      * @OA\Put(
-     *      path="/api/v1/vacancies/{id}",
-     *      operationId="updateVacancy",
      *      tags={"Vacancies"},
+     *      path="/api/v1/vacancies/{id}",
      *      summary="Update existing vacancy",
-     *      description="Returns updated vacancy data",
+     *      description="Updated vacancy data",
      *      @OA\Parameter(
      *          name="id",
      *          description="Vacancy id",
@@ -124,33 +114,16 @@ class VacancyController extends Controller
      *      ),
      *      @OA\RequestBody(
      *          required=true,
-     *
+     *           @OA\JsonContent(ref="#/components/schemas/Vacancy")
      *      ),
      *      @OA\Response(
-     *          response=202,
+     *          response=200,
      *          description="Successful operation",
-     *
      *       ),
-     *      @OA\Response(
-     *          response=400,
-     *          description="Bad Request"
-     *      ),
-     *      @OA\Response(
-     *          response=401,
-     *          description="Unauthenticated",
-     *      ),
-     *      @OA\Response(
-     *          response=403,
-     *          description="Forbidden"
-     *      ),
-     *      @OA\Response(
-     *          response=404,
-     *          description="Resource Not Found"
-     *      )
      * )
      */
 
-    public function update(Request $request, Vacancy $vacancy, $id)
+    public function update(VacancyRequest $request, Vacancy $vacancy, $id)
     {
         $vacancy = Vacancy::findOrFail($id);
         $vacancy->update($request->all());
@@ -174,22 +147,10 @@ class VacancyController extends Controller
      *          )
      *      ),
      *      @OA\Response(
-     *          response=204,
+     *          response=200,
      *          description="Successful operation",
      *          @OA\JsonContent()
      *       ),
-     *      @OA\Response(
-     *          response=401,
-     *          description="Unauthenticated",
-     *      ),
-     *      @OA\Response(
-     *          response=403,
-     *          description="Forbidden"
-     *      ),
-     *      @OA\Response(
-     *          response=404,
-     *          description="Resource Not Found"
-     *      )
      * )
      */
 
@@ -203,11 +164,10 @@ class VacancyController extends Controller
 
     /**
      * @OA\Patch(
-     *      path="/v1/vacancies-status-active/{id}",
-     *      operationId="updateVacancy",
-     *      tags={"Vacancies"},
+     *     tags={"Vacancies"},
+     *      path="/api/v1/vacancies-status-active/{id}",
      *      summary="Update status active vacancy",
-     *      description="Returns updated status active vacancy data",
+     *      description="Updated status active vacancy data",
      *      @OA\Parameter(
      *          name="id",
      *          description="Vacancy id",
@@ -217,31 +177,10 @@ class VacancyController extends Controller
      *              type="integer"
      *          )
      *      ),
-     *      @OA\RequestBody(
-     *          required=true,
-     *
-     *      ),
      *      @OA\Response(
-     *          response=202,
+     *          response=200,
      *          description="Successful operation",
-     *
      *       ),
-     *      @OA\Response(
-     *          response=400,
-     *          description="Bad Request"
-     *      ),
-     *      @OA\Response(
-     *          response=401,
-     *          description="Unauthenticated",
-     *      ),
-     *      @OA\Response(
-     *          response=403,
-     *          description="Forbidden"
-     *      ),
-     *      @OA\Response(
-     *          response=404,
-     *          description="Resource Not Found"
-     *      )
      * )
      */
 
@@ -257,11 +196,10 @@ class VacancyController extends Controller
 
     /**
      * @OA\Patch(
-     *      path="v1/vacancies-status-inactive/{id}",
-     *      operationId="updateVacancy",
      *      tags={"Vacancies"},
+     *      path="/api/v1/vacancies-status-inactive/{id}",
      *      summary="Update status false vacancy",
-     *      description="Returns updated status false vacancy data",
+     *      description="Updated status false vacancy data",
      *      @OA\Parameter(
      *          name="id",
      *          description="Vacancy id",
@@ -271,31 +209,15 @@ class VacancyController extends Controller
      *              type="integer"
      *          )
      *      ),
-     *      @OA\RequestBody(
-     *          required=true,
-     *
-     *      ),
+
      *      @OA\Response(
-     *          response=202,
+     *          response=200,
      *          description="Successful operation",
-     *
      *       ),
      *      @OA\Response(
      *          response=400,
      *          description="Bad Request"
      *      ),
-     *      @OA\Response(
-     *          response=401,
-     *          description="Unauthenticated",
-     *      ),
-     *      @OA\Response(
-     *          response=403,
-     *          description="Forbidden"
-     *      ),
-     *      @OA\Response(
-     *          response=404,
-     *          description="Resource Not Found"
-     *      )
      * )
      */
 
@@ -312,14 +234,12 @@ class VacancyController extends Controller
     /**
      * @OA\Get(
      *      tags={"Vacancies"},
-     *      path="v1/vacancies-actives",
-     *      operationId="getVacanciesList",
+     *      path="/api/v1/vacancies-actives",
      *      summary="Get list of active Vacancies",
      *      description="Returns list of active vacancies",
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
-     *
      *       ),
      *      @OA\Response(
      *          response=401,
@@ -341,8 +261,7 @@ class VacancyController extends Controller
     /**
      * @OA\Get(
      *      tags={"Vacancies"},
-     *      path="vv1/vacancies-inactives",
-     *      operationId="getVacanciesList",
+     *      path="/api/v1/vacancies-inactives",
      *      summary="Get list of inactive Vacancies",
      *      description="Returns list of inactive vacancies",
      *      @OA\Response(
@@ -369,23 +288,23 @@ class VacancyController extends Controller
 
     /**
      * @OA\Post(
-     *      path="/api/v1/filter?{nameFilter}={value}",
-     *      operationId="filterVacancy",
      *      tags={"Vacancies"},
+     *      path="/api/v1/filter?{nameFilter}={value}",
      *      summary="Filter name field a vacancy",
-     *      description="Returns vacancy data",
      *      @OA\RequestBody(
      *          required=true,
-     *
+     *           @OA\JsonContent(ref="#/components/schemas/Vacancy")
      *      ),
      *      @OA\Response(
-     *          response=201,
-     *          description="Successful operation",
-     *
+     *          response=200,
+     *          description="Successful operation.",
      *       ),
+     *      @OA\Response(
+     *         response="default",
+     *         description="Ha ocurrido un error."
+     *     )
      * )
      */
-
 
     public function filter(Request $request)
     {

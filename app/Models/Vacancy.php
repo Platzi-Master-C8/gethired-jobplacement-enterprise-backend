@@ -41,6 +41,12 @@ class Vacancy extends Model
         return $this->belongsTo(Company::class);
     }
 
+    public function typework(): BelongsTo
+    {
+        return $this->belongsTo(TypeWork::class);
+    }
+
+
     public function applicants(): HasMany
     {
         return $this->hasMany(VacancyApplicant::class);

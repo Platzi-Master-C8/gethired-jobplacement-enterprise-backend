@@ -20,13 +20,13 @@ class CreateVacanciesTable extends Migration
             $table->dateTime('postulation_deadline', 20)->nullable();
             $table->text('description');
             $table->boolean('status');
-            $table->string('salary', 10);
+            $table->integer('salary');
             $table->integer('company_id');
             $table->string('typeWork');
             $table->string('job_location');
             $table->text('skills');
-            $table->string('hours_per_week', 30);
-            $table->string('minimum_experience', 30);
+            $table->integer('hours_per_week');
+            $table->integer('minimum_experience');
             $table->timestampsTz();
 
             $table->foreign('company_id')->references('id')->on('companies');
