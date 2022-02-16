@@ -138,7 +138,7 @@ class TypeWorkController extends Controller
     public function destroy(TypeWork $typeWork)
     {
         $typeWork->delete();
-        
+
         return response()->json([
             'message' => 'Type work deleted successfully!',
         ]);

@@ -14,6 +14,7 @@ class ApplicationController extends Controller
         $applicants = $vacancy->applicants;
 
         return response()->json([
+            'message' => 'List applicants',
             'count' => count($applicants),
             'data' => $applicants->pluck('applicant_id'),
         ]);
@@ -22,10 +23,9 @@ class ApplicationController extends Controller
     public function applyVacancy(Request $request, Vacancy $vacancy)
     {
         try {
-            VacancyApplicant::created([
+            VacancyApplicant::create([
                 'vacancy_id' => $vacancy->id,
                 'applicant_id' => $request->applicant_id,
-                'aspiration_salary' => 0,
             ]);
 
             return response()->json([

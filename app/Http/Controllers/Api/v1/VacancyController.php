@@ -28,7 +28,6 @@ class VacancyController extends Controller
      *     )
      * )
      */
-
     public function index()
     {
         return new VacancyCollection(Vacancy::with("company")->get());
@@ -60,9 +59,6 @@ class VacancyController extends Controller
      *     )
      * )
      */
-
-
-
     public function indexFindOne(Vacancy $id)
     {
         return new VacancyResource($id);
@@ -87,7 +83,6 @@ class VacancyController extends Controller
      *     )
      * )
      */
-
     public function store(VacancyRequest $request)
     {
         $dataVacancies = Vacancy::create($request->all());
@@ -124,6 +119,7 @@ class VacancyController extends Controller
      */
 
     public function update(VacancyRequest $request, Vacancy $vacancy, $id)
+
     {
         $vacancy = Vacancy::findOrFail($id);
         $vacancy->update($request->all());
@@ -159,7 +155,7 @@ class VacancyController extends Controller
         Vacancy::destroy($id);
         return response()->json([
             'message' => 'Success'
-        ],);
+        ]);
     }
 
     /**
@@ -183,7 +179,6 @@ class VacancyController extends Controller
      *       ),
      * )
      */
-
     public function patchActive(Request $request)
     {
         $vacancy_id = $request->id;
@@ -220,7 +215,6 @@ class VacancyController extends Controller
      *      ),
      * )
      */
-
     public function patchInactive(Request $request)
     {
         $vacancy_id = $request->id;
@@ -251,8 +245,6 @@ class VacancyController extends Controller
      *      )
      *     )
      */
-
-
     public function vacanciesActives()
     {
         return new VacancyCollection(Vacancy::where('status', 1)->OrderBy('updated_at', 'desc')->get());
@@ -279,7 +271,6 @@ class VacancyController extends Controller
      *      )
      *     )
      */
-
 
     public function vacanciesInactives()
     {
@@ -308,7 +299,6 @@ class VacancyController extends Controller
 
     public function filter(Request $request)
     {
-
         //Build research motor
         $builder = new SearchBuilder('Vacancy', $request);
         //Applicate filter
