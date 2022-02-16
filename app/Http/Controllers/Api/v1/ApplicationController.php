@@ -25,7 +25,6 @@ class ApplicationController extends Controller
             VacancyApplicant::created([
                 'vacancy_id' => $vacancy->id,
                 'applicant_id' => $request->applicant_id,
-                'aspiration_salary' => 0,
             ]);
 
             return response()->json([

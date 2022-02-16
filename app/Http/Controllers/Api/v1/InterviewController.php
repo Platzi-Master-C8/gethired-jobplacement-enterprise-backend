@@ -67,7 +67,7 @@ class InterviewController extends Controller
      * @OA\Get(
      *     tags={"Interviews"},
      *     path="/api/v1/interviews/{id}",
-     *     summary="Get data of an interview",     *
+     *     summary="Get data of an interview",
      *     @OA\Parameter(
      *          name="id",
      *          description="Interview id",
