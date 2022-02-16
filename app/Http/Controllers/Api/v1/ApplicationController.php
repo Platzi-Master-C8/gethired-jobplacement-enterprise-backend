@@ -14,6 +14,7 @@ class ApplicationController extends Controller
         $applicants = $vacancy->applicants;
 
         return response()->json([
+            'message' => 'List applicants',
             'count' => count($applicants),
             'data' => $applicants->pluck('applicant_id'),
         ]);

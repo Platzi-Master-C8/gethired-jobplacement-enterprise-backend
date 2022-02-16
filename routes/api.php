@@ -38,8 +38,8 @@ Route::get('/v1/vacancies', [VacancyController::class, 'index'])->name('vacancie
 Route::get('/v1/vacancies/{id}', [VacancyController::class, 'indexFindOne'])->name('vacancies.indexFindOne');
 
 
-Route::get('v1/vacancies/{id}/applications', [ApplicationController::class, 'listApplicants'])->name('vacancies.applications.list');
-Route::post('v1/vacancies/{id}/applications', [ApplicationController::class, 'applyVacancy'])->name('vacancies.applications.apply');
+Route::get('v1/vacancies/{vacancy}/applications', [ApplicationController::class, 'listApplicants'])->name('vacancies.applications.list');
+Route::post('v1/vacancies/{vacancy}/applications', [ApplicationController::class, 'applyVacancy'])->name('vacancies.applications.apply');
 Route::post('/v1/vacancies', [VacancyController::class, 'store'])->name('vacancies.store');
 Route::put('/v1/vacancies/{id}', [VacancyController::class, 'update'])->name('vacancies.update');
 Route::delete('/v1/vacancies/{id}', [VacancyController::class, 'destroy'])->name('vacancies.destroy');
