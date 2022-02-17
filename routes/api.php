@@ -72,6 +72,7 @@ Route::prefix('v1')->group(function () {
                 Route::get('', [CompanyController::class, 'list'])->name('list');
                 Route::get('select', [CompanyController::class, 'listAsSelect'])->name('list-select');
                 Route::get('vacancies', [CompanyController::class, 'listWithVacancies'])->name('list-with-vacancies');
+                Route::get('/{id}', [CompanyController::class, 'indexFindOne'])->name('company.indexFindOne');
             });
         });
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
 use App\Models\Company;
+use App\Http\Resources\v1\CompanyResource;
 use Illuminate\Http\Request;
 
 class CompanyController extends Controller
@@ -77,5 +78,37 @@ class CompanyController extends Controller
             'message' => 'List Company with yours vacancies',
             'data' => $companies,
         ]);
+    }
+
+    /**
+     * @OA\Get(
+     *      tags={"Companies"},
+     *      path="/api/v1/companies/{id}",
+     *      summary="Get data of a Company",
+     *       @OA\Parameter(
+     *          name="id",
+     *          description="Companyt id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *
+     *      @OA\Response(
+     *          response=200,
+     *          description="Show detail of a company",
+     *       ),
+     *
+     *     @OA\Response(
+     *         response="default",
+     *         description="Ha ocurrido un error."
+     *     )
+     * )
+     */
+
+    public function indexFindOne(Company $id)
+    {
+        return new CompanyResource($id);
     }
 }
