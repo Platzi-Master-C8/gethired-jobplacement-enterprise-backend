@@ -123,7 +123,7 @@ class CompanyController extends Controller
     /**
      * @OA\Get(
      *     tags={"Companies"},
-     *     path="/api/v1/companies/{id}/show-with-companies",
+     *     path="/api/v1/companies/{id}/show-with-vacancies",
      *     summary="Get company with vacancies",
      *     @OA\Parameter(
      *          name="id",
