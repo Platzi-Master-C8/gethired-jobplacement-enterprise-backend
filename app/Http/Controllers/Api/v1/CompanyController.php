@@ -78,4 +78,53 @@ class CompanyController extends Controller
             'data' => $companies,
         ]);
     }
+
+    /**
+     * @OA\Get(
+     *     tags={"Companies"},
+     *     path="/api/v1/companies/{id}/show",
+     *     summary="Get company",
+     *     @OA\Response(
+     *         response=200,
+     *         description="Get data one company"
+     *     ),
+     *     @OA\Response(
+     *         response="default",
+     *         description="Ha ocurrido un error."
+     *     )
+     * )
+     */
+    public function show(Company $company)
+    {
+        return response()->json([
+           'message' => 'Show company',
+           'data' => $company
+        ]);
+    }
+
+    /**
+     * @OA\Get(
+     *     tags={"Companies"},
+     *     path="/api/v1/companies/{id}/show-with-companies",
+     *     summary="Get company with vacancies",
+     *     @OA\Response(
+     *         response=200,
+     *         description="Get company with vacancies"
+     *     ),
+     *     @OA\Response(
+     *         response="default",
+     *         description="Ha ocurrido un error."
+     *     )
+     * )
+     */
+    public function showWithVacancies(Company $company)
+    {
+        $vacancies = $company->vacancies;
+
+        return response()->json([
+            'message' => 'Show company with vacancies',
+            'data' => $company,
+            'vacancies' => $vacancies,
+        ]);
+    }
 }

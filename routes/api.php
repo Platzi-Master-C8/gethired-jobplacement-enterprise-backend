@@ -72,6 +72,8 @@ Route::prefix('v1')->group(function () {
                 Route::get('', [CompanyController::class, 'list'])->name('list');
                 Route::get('select', [CompanyController::class, 'listAsSelect'])->name('list-select');
                 Route::get('vacancies', [CompanyController::class, 'listWithVacancies'])->name('list-with-vacancies');
+                Route::get('{company}/show', [CompanyController::class, 'show'])->name('show');
+                Route::get('{company}/show-with-vacancies', [CompanyController::class, 'showWithVacancies'])->name('show-with-vacancies');
             });
         });
 
