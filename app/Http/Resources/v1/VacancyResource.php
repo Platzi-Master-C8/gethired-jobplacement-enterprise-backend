@@ -33,10 +33,12 @@ class VacancyResource extends JsonResource
             'typeWork'              =>  $this->typework->name,
             'job_location'          =>  $this->job_location,
             'skills'                =>  $skillsFormat,
+            'skills_raw'            =>  $this->skills,
             'hours_per_week'        =>  $this->hours_per_week,
             'minimum_experience'    =>  $this->minimum_experience,
             'created_at'            =>  $this->created_at,
             'updated_at'            =>  $this->updated_at,
+            'type_work_id'          =>  $this->typeWork,
             'company'               =>  [
                 'id'   => $this->company->id,
                 'name' => $this->company->name,
