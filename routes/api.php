@@ -59,10 +59,10 @@ Route::prefix('v1')->group(function () {
                 Route::get('', [InterviewController::class, 'index'])->name('index');
                 Route::post('', [InterviewController::class, 'store'])->name('store');
 
-                Route::get('{id}', [InterviewController::class, 'show'])->name('show');
-                Route::patch('{id}/reschedule', [InterviewController::class, 'reschedule'])->name('reschedule');
-                Route::patch('{id}/cancel', [InterviewController::class, 'cancel'])->name('cancel');
-                Route::patch('{id}/finish', [InterviewController::class, 'finish'])->name('finish');
+                Route::get('{interview}', [InterviewController::class, 'show'])->name('show');
+                Route::patch('{interview}/reschedule', [InterviewController::class, 'reschedule'])->name('reschedule');
+                Route::patch('{interview}/cancel', [InterviewController::class, 'cancel'])->name('cancel');
+                Route::patch('{interview}/finish', [InterviewController::class, 'finish'])->name('finish');
             });
         });
 
