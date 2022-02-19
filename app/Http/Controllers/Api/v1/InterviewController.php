@@ -111,7 +111,7 @@ class InterviewController extends Controller
      *      ),
      *     @OA\Response(
      *         response=200,
-     *         description="Reschedule an interview giving new date."
+     *         description="Reschedule an interview giving new date in the body is necessary post new_data."
      *     ),
      *     @OA\Response(
      *         response="default",

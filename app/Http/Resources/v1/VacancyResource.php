@@ -43,6 +43,7 @@ class VacancyResource extends JsonResource
                 'id'   => $this->company->id,
                 'name' => $this->company->name,
             ],
+            'applicants' => $this->applicants->pluck('applicant_id')->all(),
         ];
     }
 }
