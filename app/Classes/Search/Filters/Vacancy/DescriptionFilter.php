@@ -13,7 +13,7 @@ class DescriptionFilter
     public static function apply(Builder $query, Request $request)
     {
         if ($request->description) {
-            $query->where('description', 'like', '%' .  $request->description . '%');
+            $query->where('description', 'ilike', '%' .  $request->description . '%');
         }
 
         return $query;
