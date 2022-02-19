@@ -15,6 +15,12 @@ class VacancyResource extends JsonResource
      */
     public function toArray($request)
     {
+        $skills = explode(',', $this->skills);
+        $skillsFormat = [];
+        foreach ($skills as $skill){
+            $skillsFormat = trim($skill);
+        }
+
         return [
             'id'                    =>  $this->id,
             'name'                  =>  $this->name,
@@ -26,7 +32,7 @@ class VacancyResource extends JsonResource
             'company_id'            =>  $this->company_id,
             'typeWork'              =>  $this->typework->name,
             'job_location'          =>  $this->job_location,
-            'skills'                =>  explode(',', $this->skills),
+            'skills'                =>  $skillsFormat,
             'hours_per_week'        =>  $this->hours_per_week,
             'minimum_experience'    =>  $this->minimum_experience,
             'created_at'            =>  $this->created_at,
