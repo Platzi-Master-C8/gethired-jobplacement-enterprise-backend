@@ -13,7 +13,7 @@ class SalaryFilter
     public static function apply(Builder $query, Request $request)
     {
         if ($request->salary) {
-            $query->where('salary', 'like', '%' .  $request->salary . '%');
+            $query->where('salary', 'ilike', '%' .  $request->salary . '%');
         }
 
         return $query;

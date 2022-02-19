@@ -13,7 +13,7 @@ class NameFilter
     public static function apply(Builder $query, Request $request)
     {
         if ($request->name) {
-            $query->where('name', 'like', '%' .  $request->name . '%');
+            $query->where('name', 'ilike', '%' .  $request->name . '%');
         }
 
         return $query;

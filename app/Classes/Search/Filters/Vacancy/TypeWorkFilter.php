@@ -13,7 +13,7 @@ class TypeWorkFilter
     public static function apply(Builder $query, Request $request)
     {
         if ($request->typeWork) {
-            $query->where('typeWork', 'like', '%' .  $request->typeWork . '%');
+            $query->where('typeWork', 'ilike', '%' .  $request->typeWork . '%');
         }
 
         return $query;

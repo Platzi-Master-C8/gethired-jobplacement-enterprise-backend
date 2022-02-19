@@ -13,7 +13,7 @@ class MinimumExperienceFilter
     public static function apply(Builder $query, Request $request)
     {
         if ($request->minimum_experience) {
-            $query->where('minimum_experience', 'like', '%' .  $request->minimum_experience . '%');
+            $query->where('minimum_experience', 'ilike', '%' .  $request->minimum_experience . '%');
         }
 
         return $query;

@@ -20,7 +20,7 @@ class VacancyController extends Controller
      *      summary="Get list of Vacancies",
      *      @OA\Response(
      *          response=200,
-     *          description="Returns list of vacancies."
+     *          description="Returns list of vacancies. If you need vacancies by user, please send user_id as paramete"
      *       ),
      *      @OA\Response(
      *         response="default",
@@ -28,9 +28,15 @@ class VacancyController extends Controller
      *     )
      * )
      */
-    public function index()
+    public function index(Request $request)
     {
-        return new VacancyCollection(Vacancy::with("company")->with('typework')->get());
+        $vacancies = Vacancy::with("company")->with('typework');
+
+        if ($request->user_id != '') {
+            $vacancies->where('user_id', $request->user_id);
+        }
+
+        return new VacancyCollection($vacancies->get());
     }
 
     /**
@@ -204,7 +210,6 @@ class VacancyController extends Controller
      *              type="integer"
      *          )
      *      ),
-
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",

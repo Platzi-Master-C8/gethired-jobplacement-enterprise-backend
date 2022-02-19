@@ -13,7 +13,7 @@ class SkillsFilter
     public static function apply(Builder $query, Request $request)
     {
         if ($request->skills) {
-            $query->where('skills', 'like', '%' .  $request->skills . '%');
+            $query->where('skills', 'ilike', '%' .  $request->skills . '%');
         }
 
         return $query;
