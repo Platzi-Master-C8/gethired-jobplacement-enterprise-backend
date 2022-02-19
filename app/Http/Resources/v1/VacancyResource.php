@@ -18,7 +18,7 @@ class VacancyResource extends JsonResource
         $skills = explode(',', $this->skills);
         $skillsFormat = [];
         foreach ($skills as $skill){
-            $skillsFormat = trim($skill);
+            $skillsFormat[] = trim($skill);
         }
 
         return [
