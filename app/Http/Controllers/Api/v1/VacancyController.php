@@ -30,7 +30,7 @@ class VacancyController extends Controller
      */
     public function index()
     {
-        return new VacancyCollection(Vacancy::with("company")->get());
+        return new VacancyCollection(Vacancy::with("company")->with('typework')->get());
     }
 
     /**
