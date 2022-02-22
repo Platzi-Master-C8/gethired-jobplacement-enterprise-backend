@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\Vacancy as VacancyRequest;
 use App\Http\Resources\v1\VacancyCollection;
 use App\Http\Resources\v1\VacancyResource;
+use App\Models\VacancyApplicant;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class VacancyController extends Controller
@@ -158,6 +159,7 @@ class VacancyController extends Controller
 
     public function destroy($id)
     {
+        VacancyApplicant::where("vacancy_id", $id)->delete();
         Vacancy::destroy($id);
         return response()->json([
             'message' => 'Success'
@@ -310,6 +312,6 @@ class VacancyController extends Controller
         $query = $builder->filter();
         //return json query
         $query = $builder->filter();
-        return response()->json($query->get());
+        return response()->json(new VacancyCollection($query->get()));
     }
 }
