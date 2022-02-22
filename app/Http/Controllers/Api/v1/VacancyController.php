@@ -314,4 +314,25 @@ class VacancyController extends Controller
         $query = $builder->filter();
         return response()->json(new VacancyCollection($query->get()));
     }
+
+    /**
+     * @OA\Get(
+     *      tags={"Vacancies"},
+     *      path="/api/v1/vacancies-job-location",
+     *      summary="Get list of job location of Vacancies",
+     *      @OA\Response(
+     *          response=200,
+     *          description="Returns list of job location of Vacancies"
+     *       ),
+     *      @OA\Response(
+     *         response="default",
+     *         description="Ha ocurrido un error."
+     *     )
+     * )
+     */
+
+    public function vacanciesJobLocation()
+    {
+        return Vacancy::select("job_location")->distinct()->get();
+    }
 }
