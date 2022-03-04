@@ -115,7 +115,7 @@ class InterviewController extends Controller
      *          required=true,
      *          in="body",
      *          @OA\Schema(
-     *              type="datetimetz"
+     *              type="datetime"
      *          )
      *      ),
      *
