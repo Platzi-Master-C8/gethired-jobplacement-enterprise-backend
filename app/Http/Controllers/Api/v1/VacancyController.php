@@ -19,6 +19,14 @@ class VacancyController extends Controller
      *      tags={"Vacancies"},
      *      path="/api/v1/vacancies",
      *      summary="Get list of Vacancies",
+     *     @OA\Parameter(
+     *          name="user_id",
+     *          description="Get vacancies by user",
+     *          in="query",
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
      *      @OA\Response(
      *          response=200,
      *          description="Returns list of vacancies. If you need vacancies by user, please send user_id as paramete"

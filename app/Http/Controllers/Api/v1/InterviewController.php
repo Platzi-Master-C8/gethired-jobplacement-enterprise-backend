@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Api\v1;
 
+use App\Http\Resources\v1\InterviewCollection;
+use App\Http\Resources\v1\InterviewResource;
 use App\Models\Interview;
 use App\Models\InterviewHistory;
 use Illuminate\Http\Request;
@@ -26,11 +28,11 @@ class InterviewController extends Controller
      */
     public function index()
     {
-        $interviews = Interview::get();
+        $interviews = Interview::with('vacancy:id,name')->get();
 
         return response()->json([
             'count' => $interviews->count(),
-            'data' => $interviews,
+            'data' => new InterviewCollection($interviews),
         ]);
     }
 
@@ -91,7 +93,7 @@ class InterviewController extends Controller
     {
         return response()->json([
             'message' => 'Detail interview',
-            'data' => $interview,
+            'data' => new InterviewResource($interview),
         ]);
     }
 
@@ -113,15 +115,15 @@ class InterviewController extends Controller
      *          description="new date",
      *          required=true,
      *          @OA\JsonContent(
-     *     @OA\Property(
-     *     title="new Date",
-     *     description="new  Date interview",
-     *     example="2022-05-01 13:50:45",
-     *     format="datetimetz",
-     *     type="string",
-     *     schema="new_date"
-     * )
-     * )
+     *              @OA\Property (
+     *                  title="new Date",
+     *                  description="new  Date interview",
+     *                  example="2022-05-01 13:50:45",
+     *                  format="datetimetz",
+     *                  type="string",
+     *                  property="new_date"
+     *              )
+     *          )
      *      ),
      *
      *     @OA\Response(
