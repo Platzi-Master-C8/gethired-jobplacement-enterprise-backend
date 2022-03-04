@@ -112,7 +112,16 @@ class InterviewController extends Controller
      *      @OA\RequestBody(
      *          description="new date",
      *          required=true,
-     *          @OA\JsonContent()
+     *          @OA\JsonContent(
+     *     @OA\Property(
+     *     title="new Date",
+     *     description="new  Date interview",
+     *     example="2022-05-01 13:50:45",
+     *     format="datetimetz",
+     *     type="string",
+     *     schema="new_date"
+     * )
+     * )
      *      ),
      *
      *     @OA\Response(
