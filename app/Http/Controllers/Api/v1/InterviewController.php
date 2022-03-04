@@ -109,14 +109,10 @@ class InterviewController extends Controller
      *              type="integer"
      *          )
      *      ),
-     *      @OA\Parameter(
-     *          name="new_date",
+     *      @OA\RequestBody(
      *          description="new date",
      *          required=true,
-     *          in="body",
-     *          @OA\Schema(
-     *              type="datetime"
-     *          )
+     *          @OA\JsonContent()
      *      ),
      *
      *     @OA\Response(
