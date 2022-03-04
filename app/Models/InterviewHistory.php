@@ -12,7 +12,7 @@ class InterviewHistory extends Model
     protected $table = 'interviews_history';
 
     protected $fillable = [
-        'interviews_id',
+        'interview_id',
         'description',
     ];
 }
