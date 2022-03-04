@@ -109,9 +109,19 @@ class InterviewController extends Controller
      *              type="integer"
      *          )
      *      ),
+     *      @OA\Parameter(
+     *          name="new_date",
+     *          description="new date",
+     *          required=true,
+     *          in="body",
+     *          @OA\Schema(
+     *              type="datetimetz"
+     *          )
+     *      ),
+     *
      *     @OA\Response(
      *         response=200,
-     *         description="Reschedule an interview giving new date in the body is necessary post new_data."
+     *         description="Reschedule an interview giving new date in the body is necessary post new_date."
      *     ),
      *     @OA\Response(
      *         response="default",
