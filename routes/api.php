@@ -72,12 +72,15 @@ Route::prefix('v1')->group(function () {
         Route::prefix('companies')->group(function () {
             Route::name('companies.')->group(function () {
                 Route::get('', [CompanyController::class, 'list'])->name('list');
+                Route::post('', [CompanyController::class, 'store'])->name('store');
                 Route::get('select', [CompanyController::class, 'listAsSelect'])->name('list-select');
                 Route::get('vacancies', [CompanyController::class, 'listWithVacancies'])->name('list-with-vacancies');
 
                 //Route::get('{company}/show', [CompanyController::class, 'show'])->name('show');
                 Route::get('{company}/show-with-vacancies', [CompanyController::class, 'showWithVacancies'])->name('show-with-vacancies');
                 Route::get('/{id}', [CompanyController::class, 'indexFindOne'])->name('company.indexFindOne');
+
+                Route::post('{company}', [CompanyController::class, 'update'])->name('update');
             });
         });
 
