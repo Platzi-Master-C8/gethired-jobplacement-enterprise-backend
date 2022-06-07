@@ -2,6 +2,8 @@
 
 namespace Tests;
 
+use Database\Seeders\SkillSeeder;
+use Database\Seeders\TypeWorkSeeder;
 use Illuminate\Contracts\Console\Kernel;
 
 trait CreatesApplication
@@ -16,6 +18,9 @@ trait CreatesApplication
         $app = require __DIR__.'/../bootstrap/app.php';
 
         $app->make(Kernel::class)->bootstrap();
+
+        app(SkillSeeder::class)->run();
+        app(TypeWorkSeeder::class)->run();
 
         return $app;
     }
