@@ -152,4 +152,9 @@ class CompanyControllerTest extends TestCase
 
         $response->assertStatus(404);
     }
+
+    protected function afterRefreshingDatabase()
+    {
+        parent::afterRefreshingDatabase();
+    }
 }
