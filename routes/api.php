@@ -1,15 +1,15 @@
 <?php
 
+use App\Http\Controllers\Api\v1\ApplicationController;
+use App\Http\Controllers\Api\v1\CompanyController;
 use App\Http\Controllers\Api\v1\InterviewController;
 use App\Http\Controllers\Api\v1\SkillController;
 use App\Http\Controllers\Api\v1\TypeWorkController;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\v1\UserController;
 use App\Http\Controllers\Api\v1\VacancyController;
-use App\Http\Controllers\Api\v1\CompanyController;
+use Illuminate\Http\Request;
 
-use App\Http\Controllers\Api\v1\ApplicationController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------

@@ -42,7 +42,6 @@ abstract class CompanyController
     {
     }
 
-
     /**
      * @OA\Get(
      *     tags={"Companies"},

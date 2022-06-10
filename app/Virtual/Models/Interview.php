@@ -45,7 +45,7 @@ class Interview
      *      example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     public $vacancy_id;
 
@@ -57,7 +57,7 @@ class Interview
      *      example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     public $applicant_id;
 
@@ -102,7 +102,7 @@ class Interview
      *      example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     public $active;
 

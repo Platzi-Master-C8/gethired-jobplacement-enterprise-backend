@@ -9,7 +9,8 @@ use Tests\TestCase;
 
 class CompanyControllerTest extends TestCase
 {
-    use RefreshDatabase, WithFaker;
+    use RefreshDatabase;
+    use WithFaker;
 
     public function test_list()
     {
@@ -64,7 +65,7 @@ class CompanyControllerTest extends TestCase
                 'country',
                 'city',
                 'active',
-            ]
+            ],
         ]);
     }
 
@@ -147,8 +148,7 @@ class CompanyControllerTest extends TestCase
 
     public function test_update_not_found()
     {
-
-        $response = $this->patch(route('v1.companies.update', 99),[]);
+        $response = $this->patch(route('v1.companies.update', 99), []);
 
         $response->assertStatus(404);
     }

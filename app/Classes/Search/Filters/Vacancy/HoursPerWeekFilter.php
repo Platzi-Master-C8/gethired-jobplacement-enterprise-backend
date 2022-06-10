@@ -2,14 +2,11 @@
 
 namespace App\Classes\Search\Filters\Vacancy;
 
-use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
-
-
+use Illuminate\Http\Request;
 
 class HoursPerWeekFilter
 {
-
     public static function apply(Builder $query, Request $request)
     {
         if ($request->hours_per_week) {

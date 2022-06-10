@@ -29,11 +29,11 @@ class ApplicationController extends Controller
             ]);
 
             return response()->json([
-                'message' => 'Application successful!'
+                'message' => 'Application successful!',
             ], 201);
         } catch (\Exception $e) {
             return response()->json([
-                'message' => 'Error'
+                'message' => 'Error',
             ]);
         }
     }

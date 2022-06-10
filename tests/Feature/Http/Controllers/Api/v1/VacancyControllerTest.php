@@ -8,7 +8,8 @@ use Tests\TestCase;
 
 class VacancyControllerTest extends TestCase
 {
-    use RefreshDatabase, WithFaker;
+    use RefreshDatabase;
+    use WithFaker;
 
     public function test_store()
     {
@@ -24,7 +25,7 @@ class VacancyControllerTest extends TestCase
             'skills' => 'React, Php, Node, Angular',
             'hours_per_week' => 40,
             'minimum_experience' => 1,
-            'user_id' => 'user-id'
+            'user_id' => 'user-id',
         ]);
 
         $response->assertJsonStructure([
@@ -41,7 +42,7 @@ class VacancyControllerTest extends TestCase
                 'skills',
                 'hours_per_week',
                 'minimum_experience',
-                'created_at'
+                'created_at',
             ],
         ]);
     }

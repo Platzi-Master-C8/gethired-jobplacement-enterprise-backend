@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Api\v1;
 
+use App\Http\Controllers\Controller;
 use App\Http\Resources\v1\InterviewCollection;
 use App\Http\Resources\v1\InterviewResource;
 use App\Models\Interview;
 use App\Models\InterviewHistory;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class InterviewController extends Controller
 {
@@ -140,7 +140,7 @@ class InterviewController extends Controller
     {
         InterviewHistory::create([
             'interview_id' => $interview->id,
-            'description' => "Interview reschedule from {$interview->date} to {$request->new_date}"
+            'description' => "Interview reschedule from {$interview->date} to {$request->new_date}",
         ]);
 
         $interview->date = $request->new_date;
@@ -179,7 +179,7 @@ class InterviewController extends Controller
     {
         InterviewHistory::create([
             'interview_id' => $interview->id,
-            'description' => "Interview has canceled"
+            'description' => "Interview has canceled",
         ]);
 
         $interview->active = 0;
@@ -219,7 +219,7 @@ class InterviewController extends Controller
     {
         InterviewHistory::create([
             'interview_id' => $interview->id,
-            'description' => "Interview has finished"
+            'description' => "Interview has finished",
         ]);
 
         $interview->active = 0;

@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources\v1;
 
-
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class CompanyResource extends JsonResource
@@ -24,7 +23,7 @@ class CompanyResource extends JsonResource
             'website' => $this->website,
             'country' => $this->country,
             'city' => $this->city,
-            'active' => $this->active
+            'active' => $this->active,
         ];
     }
 }

@@ -30,7 +30,6 @@ class Vacancy extends Model
         'minimum_experience',
     ];
 
-
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

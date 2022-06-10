@@ -24,7 +24,7 @@ class TypeWorkStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:types_work'
+            'name' => 'required|unique:types_work',
         ];
     }
 }

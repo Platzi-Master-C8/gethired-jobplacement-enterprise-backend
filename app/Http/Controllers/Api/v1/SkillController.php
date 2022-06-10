@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api\v1;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SkillStoreRequest;
 use App\Models\Skill;
-use Illuminate\Http\Request;
 
 class SkillController extends Controller
 {

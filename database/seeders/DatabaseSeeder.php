@@ -4,12 +4,10 @@ namespace Database\Seeders;
 
 use App\Models\Company;
 use App\Models\Interview;
-use App\Models\Skill;
-use App\Models\Vacancy;
 use App\Models\User;
+use App\Models\Vacancy;
 use App\Models\VacancyApplicant;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,7 +18,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-
         Company::factory(3)->has(Vacancy::factory(5), 'vacancies')->create();
 
 
