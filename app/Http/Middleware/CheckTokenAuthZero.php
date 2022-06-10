@@ -32,10 +32,9 @@ class CheckTokenAuthZero
             $tokenInfo = $auth0->decodeJWT($accessToken);
             $user = $this->userRepository->getUserByDecodedJWT($tokenInfo);
 
-            if (!$user) {
+            if (! $user) {
                 return response()->json(["message" => "Unauthorized user"], 401);
             }
-
         } catch (InvalidTokenException $e) {
             return response()->json(["message" => $e->getMessage()], 401);
         } catch (CoreException $e) {

@@ -3,7 +3,6 @@
 namespace App\Classes\Search;
 
 use Illuminate\Http\Request;
-use App\Models\Vacancy;
 
 class SearchBuilder
 {
@@ -20,7 +19,6 @@ class SearchBuilder
 
     public function filter()
     {
-
         $query = $this->applyFilters();
 
         return $query;
@@ -28,7 +26,6 @@ class SearchBuilder
 
     private function applyFilters()
     {
-
         $model = $this->getModel();
 
         $query = $model->newQuery();
@@ -44,19 +41,18 @@ class SearchBuilder
                 $query = $filterClass::apply($query, $this->request);
             }
         }
+
         return $query;
     }
 
     private function getModel()
     {
         try {
-
             return app('App\Models\\' . $this->modelName);
         } catch (\Exception $e) {
             abort(500);
         }
     }
-
 
     //recupera los filtros
     private function getFilters()
@@ -69,7 +65,7 @@ class SearchBuilder
             //Escanear los filtros
             $allFilters = scandir($path);
             //quita . y ..
-            $filters = array_diff($allFilters, array('.', '..'));
+            $filters = array_diff($allFilters, ['.', '..']);
 
             foreach ($filters as $filter) {
                 //expresion regular para quitar extenciones de un documento

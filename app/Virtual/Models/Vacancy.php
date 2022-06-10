@@ -13,7 +13,6 @@ namespace App\Virtual\Models;
  */
 class Vacancy
 {
-
     /**
      * @OA\Property(
      *      title="Name",
@@ -70,7 +69,7 @@ class Vacancy
      *      example=1
      * )
      *
-     * @var integer
+     * @var int
      */
     public $status;
 
@@ -82,7 +81,7 @@ class Vacancy
      *      example=1500
      * )
      *
-     * @var integer
+     * @var int
      */
     public $salary;
 
@@ -94,7 +93,7 @@ class Vacancy
      *      example="1"
      * )
      *
-     * @var integer
+     * @var int
      */
     public $company_id;
 
@@ -105,7 +104,7 @@ class Vacancy
      *      example="1"
      * )
      *
-     * @var integer
+     * @var int
      */
     public $typeWork;
 
@@ -141,7 +140,7 @@ class Vacancy
      *      example="48"
      * )
      *
-     * @var integer
+     * @var int
      */
     public $hours_per_week;
 
@@ -152,7 +151,7 @@ class Vacancy
      *      example="5"
      * )
      *
-     * @var integer
+     * @var int
      */
     public $minimum_experience;
 }

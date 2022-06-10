@@ -45,8 +45,6 @@ class CreateInterviewsTable extends Migration
         });
     }
 
-
-
     /**
      * Reverse the migrations.
      *

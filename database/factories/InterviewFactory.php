@@ -2,17 +2,16 @@
 
 namespace Database\Factories;
 
-use App\Models\Applicant;
-use App\Models\Interview;
 use App\Models\Company;
+use App\Models\Interview;
 use App\Models\User;
 use App\Models\Vacancy;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class InterviewFactory extends Factory
 {
-
     protected $model = Interview::class;
+
     /**
      * Define the model's default state.
      *

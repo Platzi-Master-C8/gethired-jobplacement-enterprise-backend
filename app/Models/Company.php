@@ -20,7 +20,7 @@ class Company extends Model
         'website',
         'country',
         'city',
-        'active'
+        'active',
     ];
 
     public function vacancies(): HasMany

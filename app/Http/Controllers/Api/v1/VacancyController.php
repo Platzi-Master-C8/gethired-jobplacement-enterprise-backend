@@ -4,13 +4,12 @@ namespace App\Http\Controllers\Api\v1;
 
 use App\Classes\Search\SearchBuilder;
 use App\Http\Controllers\Controller;
-use App\Models\Vacancy;
-use Illuminate\Http\Request;
 use App\Http\Requests\Vacancy as VacancyRequest;
 use App\Http\Resources\v1\VacancyCollection;
 use App\Http\Resources\v1\VacancyResource;
+use App\Models\Vacancy;
 use App\Models\VacancyApplicant;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Http\Request;
 
 class VacancyController extends Controller
 {
@@ -101,9 +100,10 @@ class VacancyController extends Controller
     public function store(VacancyRequest $request)
     {
         $dataVacancies = Vacancy::create($request->all());
+
         return response()->json([
             'message' => 'Vacancy store successfully',
-            'data' => $dataVacancies
+            'data' => $dataVacancies,
         ], 201);
     }
 
@@ -132,12 +132,11 @@ class VacancyController extends Controller
      *       ),
      * )
      */
-
     public function update(VacancyRequest $request, Vacancy $vacancy, $id)
-
     {
         $vacancy = Vacancy::findOrFail($id);
         $vacancy->update($request->all());
+
         return response()->json($vacancy);
     }
 
@@ -164,13 +163,13 @@ class VacancyController extends Controller
      *       ),
      * )
      */
-
     public function destroy($id)
     {
         VacancyApplicant::where("vacancy_id", $id)->delete();
         Vacancy::destroy($id);
+
         return response()->json([
-            'message' => 'Success'
+            'message' => 'Success',
         ]);
     }
 
@@ -286,7 +285,6 @@ class VacancyController extends Controller
      *      )
      *     )
      */
-
     public function vacanciesInactives()
     {
         return new VacancyCollection(Vacancy::where('status', 0)->OrderBy('updated_at', 'desc')->get());
@@ -311,7 +309,6 @@ class VacancyController extends Controller
      *     )
      * )
      */
-
     public function filter(Request $request)
     {
         //Build research motor
@@ -320,6 +317,7 @@ class VacancyController extends Controller
         $query = $builder->filter();
         //return json query
         $query = $builder->filter();
+
         return response()->json(new VacancyCollection($query->get()));
     }
 
@@ -338,7 +336,6 @@ class VacancyController extends Controller
      *     )
      * )
      */
-
     public function vacanciesJobLocation()
     {
         return Vacancy::select("job_location")->distinct()->get();

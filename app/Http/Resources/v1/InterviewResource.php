@@ -30,7 +30,7 @@ class InterviewResource extends JsonResource
             "updated_at" => $this->updated_at,
             "vacancy" => [
                 "id" => $this->vacancy->id,
-                "name" => $this->vacancy->name
+                "name" => $this->vacancy->name,
             ],
         ];
     }

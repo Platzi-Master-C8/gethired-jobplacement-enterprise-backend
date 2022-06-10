@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Interview extends Model
 {
@@ -25,10 +24,10 @@ class Interview extends Model
         'date',
     ];
 
-     public function histories()
-     {
-         return $this->hasMany(InterviewHistory::class);
-     }
+    public function histories()
+    {
+        return $this->hasMany(InterviewHistory::class);
+    }
 
     public function vacancy()
     {

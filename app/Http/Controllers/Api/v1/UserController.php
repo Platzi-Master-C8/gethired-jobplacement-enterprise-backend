@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Auth0\SDK\API\Authentication;
 use Auth0\SDK\API\Management;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
