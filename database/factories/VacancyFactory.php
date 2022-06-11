@@ -9,23 +9,11 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 
 class VacancyFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @var string
-     */
-
     protected $model = Vacancy::class;
 
-    /**
-     * Define the model's default state.
-     *
-     * @return array
-     */
-    public function definition()
+    public function definition(): array
     {
         return [
-
             'name' => $this->faker->randomElement(['Front-end developer', 'Back-end developer', 'Data Analyst', 'UI Desing', 'UX Design']),
             'user_id' => User::factory(),
             'postulation_deadline' => $this->faker->dateTime(),

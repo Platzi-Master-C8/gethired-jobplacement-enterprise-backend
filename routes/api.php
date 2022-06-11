@@ -7,24 +7,8 @@ use App\Http\Controllers\Api\v1\SkillController;
 use App\Http\Controllers\Api\v1\TypeWorkController;
 use App\Http\Controllers\Api\v1\UserController;
 use App\Http\Controllers\Api\v1\VacancyController;
-use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
-//
-//Route::middleware('auth:sanctum')->get('/users', function (Request $request) {
-//    return $request->user();
-//});
 
 Route::get('v1/users', [UserController::class, 'index'])->name('users.index');
 
@@ -37,13 +21,11 @@ Route::get('check-auth0', function () {
 Route::get('/v1/vacancies', [VacancyController::class, 'index'])->name('vacancies.index');
 Route::get('/v1/vacancies/{id}', [VacancyController::class, 'indexFindOne'])->name('vacancies.indexFindOne');
 
-
 Route::get('v1/vacancies/{vacancy}/applications', [ApplicationController::class, 'listApplicants'])->name('vacancies.applications.list');
 Route::post('v1/vacancies/{vacancy}/applications', [ApplicationController::class, 'applyVacancy'])->name('vacancies.applications.apply');
 Route::post('/v1/vacancies', [VacancyController::class, 'store'])->name('vacancies.store');
 Route::put('/v1/vacancies/{id}', [VacancyController::class, 'update'])->name('vacancies.update');
 Route::delete('/v1/vacancies/{id}', [VacancyController::class, 'destroy'])->name('vacancies.destroy');
-// Route::patch('/v1/vacancies/{id}', [VacancyController::class, 'patch'])->name('vancancies.patch');
 
 Route::patch('v1/vacancies-status-active/{id}', [VacancyController::class, 'patchActive'])->name('status.active.patch');
 Route::patch('v1/vacancies-status-inactive/{id}', [VacancyController::class, 'patchInactive'])->name('status.inactive.patch');
