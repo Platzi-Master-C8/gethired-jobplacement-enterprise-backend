@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
-use Auth0\SDK\API\Authentication;
-use Auth0\SDK\API\Management;
+use Auth0\SDK\Auth0;
+use Auth0\SDK\Configuration\SdkConfiguration;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -28,20 +28,18 @@ class UserController extends Controller
      */
     public function index()
     {
-        $auth = new Authentication(
-            config('laravel-auth0.domain'),
-            config('laravel-auth0.client_id'),
-            config('laravel-auth0.client_secret'),
+        $configuration = new SdkConfiguration(
+            domain: config('auth0.domain'),
+            clientId: config('auth0.clientId'),
+            clientSecret: config('auth0.clientSecret'),
+            audience: [
+                config('auth0.audience'),
+            ],
+            scope: ['client_credentials']
         );
 
-        $oauthToken = $auth->oauth_token([
-            'grant_type' => 'client_credentials',
-            'audience' => config('laravel-auth0.audience'),
-        ]);
-
-        $auth0Api = new Management($oauthToken['access_token'], config('laravel-auth0.domain'));
-
-        $users = $auth0Api->users()->getAll();
+        $auth0Api = new Auth0($configuration);
+        $users = json_decode($auth0Api->management()->users()->getAll()->getBody());
 
         return response()->json([
             'message' => 'User list',
