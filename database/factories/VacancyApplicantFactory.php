@@ -2,21 +2,15 @@
 
 namespace Database\Factories;
 
-use App\Models\Applicant;
 use App\Models\Vacancy;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class VacancyApplicantFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array
-     */
-    public function definition()
+    public function definition(): array
     {
         return [
-            'applicant_id' => Applicant::factory(),
+            'applicant_id' => 1,
             'vacancy_id' => Vacancy::factory(),
         ];
     }
