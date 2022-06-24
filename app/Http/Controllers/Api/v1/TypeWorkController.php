@@ -5,25 +5,11 @@ namespace App\Http\Controllers\Api\v1;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TypeWorkStoreRequest;
 use App\Models\TypeWork;
+use Illuminate\Http\JsonResponse;
 
 class TypeWorkController extends Controller
 {
-    /**
-     * @OA\Get(
-     *     tags={"TypesWork"},
-     *     path="/api/v1/types-work",
-     *     summary="Get types work list",
-     *     @OA\Response(
-     *         response=200,
-     *         description="List types work."
-     *     ),
-     *     @OA\Response(
-     *         response="default",
-     *         description="Ha ocurrido un error."
-     *     )
-     * )
-     */
-    public function list()
+    public function list(): JsonResponse
     {
         return response()->json([
             'message' => 'Type work list',
@@ -31,33 +17,8 @@ class TypeWorkController extends Controller
         ]);
     }
 
-    /**
-     * @OA\Post(
-     *     tags={"TypesWork"},
-     *     path="/api/v1/types-work",
-     *     summary="Store new type work",
-     *     @OA\RequestBody(
-     *          required=true,
-     *          @OA\JsonContent(ref="#/components/schemas/TypeWorkStoreRequest")
-     *      ),
-     *     @OA\Response(
-     *         response=201,
-     *         description="Store new type work."
-     *     ),
-     *     @OA\Response(
-     *         response="default",
-     *         description="Ha ocurrido un error."
-     *     ),
-     *     @OA\Response(
-     *         response="422",
-     *         description="Validation."
-     *     )
-     * )
-     */
-    public function store(TypeWorkStoreRequest $request)
+    public function store(TypeWorkStoreRequest $request): JsonResponse
     {
-        $request->validated();
-
         $typeWork = TypeWork::create($request->all());
 
         return response()->json([
@@ -66,42 +27,8 @@ class TypeWorkController extends Controller
         ], 201);
     }
 
-    /**
-     * @OA\Put(
-     *     tags={"TypesWork"},
-     *     path="/api/v1/types-work/{id}",
-     *     summary="Update type work",
-     *     @OA\Parameter(
-     *          name="id",
-     *          description="Type work id",
-     *          required=true,
-     *          in="path",
-     *          @OA\Schema(
-     *              type="integer"
-     *          )
-     *      ),
-     *     @OA\RequestBody(
-     *          required=true,
-     *          @OA\JsonContent(ref="#/components/schemas/TypeWorkStoreRequest")
-     *      ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Update type work."
-     *     ),
-     *     @OA\Response(
-     *         response="default",
-     *         description="Ha ocurrido un error."
-     *     ),
-     *     @OA\Response(
-     *         response="422",
-     *         description="Validation."
-     *     )
-     * )
-     */
-    public function update(TypeWorkStoreRequest $request, TypeWork $typeWork)
+    public function update(TypeWorkStoreRequest $request, TypeWork $typeWork): JsonResponse
     {
-        $request->validated();
-
         $typeWork->update($request->all());
 
         return response()->json([
@@ -110,31 +37,7 @@ class TypeWorkController extends Controller
         ]);
     }
 
-    /**
-     * @OA\Delete(
-     *     tags={"TypesWork"},
-     *     path="/api/v1/types-work/{id}",
-     *     summary="Delete type work",
-     *     @OA\Parameter(
-     *          name="id",
-     *          description="Type work id",
-     *          required=true,
-     *          in="path",
-     *          @OA\Schema(
-     *              type="integer"
-     *          )
-     *      ),
-     *      @OA\Response(
-     *         response=200,
-     *         description="Delete type work."
-     *     ),
-     *      @OA\Response(
-     *         response="default",
-     *         description="Ha ocurrido un error."
-     *     ),
-     * )
-     */
-    public function destroy(TypeWork $typeWork)
+    public function destroy(TypeWork $typeWork): JsonResponse
     {
         $typeWork->delete();
 
