@@ -2,7 +2,7 @@
 
 namespace App\Virtual\Controllers\v1;
 
-abstract class CompanyController
+abstract class CompanyControllerDoc
 {
     /**
      * @OA\Get(
