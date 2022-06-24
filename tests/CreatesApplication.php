@@ -6,15 +6,11 @@ use Database\Seeders\DatabaseSeeder;
 use Database\Seeders\SkillSeeder;
 use Database\Seeders\TypeWorkSeeder;
 use Illuminate\Contracts\Console\Kernel;
+use Illuminate\Foundation\Application;
 
 trait CreatesApplication
 {
-    /**
-     * Creates the application.
-     *
-     * @return \Illuminate\Foundation\Application
-     */
-    public function createApplication()
+    public function createApplication(): Application
     {
         $app = require __DIR__ . '/../bootstrap/app.php';
 

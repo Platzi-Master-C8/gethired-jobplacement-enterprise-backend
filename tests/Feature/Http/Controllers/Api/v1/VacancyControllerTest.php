@@ -11,7 +11,7 @@ class VacancyControllerTest extends TestCase
     use RefreshDatabase;
     use WithFaker;
 
-    public function test_store()
+    public function test_store(): void
     {
         $response = $this->post('api/v1/vacancies', [
             'name' => $this->faker->name(),
