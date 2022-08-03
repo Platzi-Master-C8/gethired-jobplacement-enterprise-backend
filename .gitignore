@@ -16,3 +16,4 @@ yarn-error.log
 storage/api-docs/api-docs.json
 .php-cs-fixer.cache
 .env.testing
+tests/coverage/**

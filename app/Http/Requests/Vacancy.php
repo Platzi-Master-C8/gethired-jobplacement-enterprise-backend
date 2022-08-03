@@ -2,26 +2,29 @@
 
 namespace App\Http\Requests;
 
+use App\Traits\ResponseJsonValidation;
 use Illuminate\Foundation\Http\FormRequest;
+use JetBrains\PhpStorm\ArrayShape;
 
 class Vacancy extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
+    use ResponseJsonValidation;
+
+    public function authorize(): bool
     {
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
-    public function rules()
+    #[ArrayShape([
+        'name' => "string",
+        'description' => "string",
+        'status' => "string",
+        'company_id' => "string",
+        'typeWork' => "string",
+        'job_location' => "string",
+        'skills' => "string",
+    ])]
+    public function rules(): array
     {
         return [
             'name' => 'required',
