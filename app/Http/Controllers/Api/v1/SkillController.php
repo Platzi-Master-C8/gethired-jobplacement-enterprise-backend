@@ -31,8 +31,14 @@ class SkillController extends Controller
         ], 201);
     }
 
+    /**
+     * @return Collection<int, mixed>
+     */
     protected function getSkills(): Collection
     {
-        return Skill::get()->pluck('name');
+        /** @var Collection $skills */
+        $skills = Skill::get();
+
+        return $skills->pluck('name');
     }
 }

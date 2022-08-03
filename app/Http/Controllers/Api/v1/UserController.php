@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\v1;
 use App\Http\Controllers\Controller;
 use Auth0\SDK\Auth0;
 use Auth0\SDK\Configuration\SdkConfiguration;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -25,20 +26,31 @@ class UserController extends Controller
      *         description="Ha ocurrido un error."
      *     )
      * )
+     *
+     * @throws \Auth0\SDK\Exception\ConfigurationException
      */
-    public function index()
+    public function index(): JsonResponse
     {
+        /** @var string $domain */
+        $domain = config('auth0.domain');
+        /** @var string $clientId */
+        $clientId = config('auth0.clientId');
+        /** @var string $clientSecret */
+        $clientSecret = config('auth0.clientSecret');
+        /** @var string $audience */
+        $audience = config('laravel-auth0.audience');
         $configuration = new SdkConfiguration(
-            domain: config('auth0.domain'),
-            clientId: config('auth0.clientId'),
-            clientSecret: config('auth0.clientSecret'),
+            domain: $domain,
+            clientId: $clientId,
+            clientSecret: $clientSecret,
             audience: [
-                config('auth0.audience'),
+                $audience,
             ],
             scope: ['client_credentials']
         );
 
         $auth0Api = new Auth0($configuration);
+        /** @var array $users */
         $users = json_decode($auth0Api->management()->users()->getAll()->getBody());
 
         return response()->json([
@@ -46,50 +58,5 @@ class UserController extends Controller
             'count' => count($users),
             'data' => $users,
         ]);
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

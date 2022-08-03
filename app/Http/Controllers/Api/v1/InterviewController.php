@@ -7,6 +7,7 @@ use App\Http\Resources\v1\InterviewCollection;
 use App\Http\Resources\v1\InterviewResource;
 use App\Models\Interview;
 use App\Models\InterviewHistory;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class InterviewController extends Controller
@@ -26,7 +27,7 @@ class InterviewController extends Controller
      *     )
      * )
      */
-    public function index()
+    public function index(): JsonResponse
     {
         $interviews = Interview::with('vacancy:id,name')->get();
 
@@ -55,7 +56,7 @@ class InterviewController extends Controller
      *     )
      * )
      */
-    public function store(Request $request)
+    public function store(Request $request): JsonResponse
     {
         $interview = Interview::create($request->all());
 
@@ -89,7 +90,7 @@ class InterviewController extends Controller
      *     )
      * )
      */
-    public function show(Interview $interview)
+    public function show(Interview $interview): JsonResponse
     {
         return response()->json([
             'message' => 'Detail interview',
@@ -136,14 +137,16 @@ class InterviewController extends Controller
      *     )
      * )
      */
-    public function reschedule(Request $request, Interview $interview)
+    public function reschedule(Request $request, Interview $interview): JsonResponse
     {
+        /** @var string $newDate */
+        $newDate = $request->new_date;
         InterviewHistory::create([
             'interview_id' => $interview->id,
-            'description' => "Interview reschedule from {$interview->date} to {$request->new_date}",
+            'description' => "Interview reschedule from {$interview->date} to {$newDate}",
         ]);
 
-        $interview->date = $request->new_date;
+        $interview->date = $newDate;
         $interview->update();
 
         return response()->json([
@@ -175,14 +178,14 @@ class InterviewController extends Controller
      *     )
      * )
      */
-    public function cancel(Request $request, Interview $interview)
+    public function cancel(Request $request, Interview $interview): JsonResponse
     {
         InterviewHistory::create([
             'interview_id' => $interview->id,
             'description' => "Interview has canceled",
         ]);
 
-        $interview->active = 0;
+        $interview->active = false;
         $interview->status_finished = 'Canceled';
         $interview->update();
 
@@ -215,14 +218,14 @@ class InterviewController extends Controller
      *     )
      * )
      */
-    public function finish(Request $request, Interview $interview)
+    public function finish(Request $request, Interview $interview): JsonResponse
     {
         InterviewHistory::create([
             'interview_id' => $interview->id,
             'description' => "Interview has finished",
         ]);
 
-        $interview->active = 0;
+        $interview->active = false;
         $interview->status_finished = 'Finished';
         $interview->update();
 

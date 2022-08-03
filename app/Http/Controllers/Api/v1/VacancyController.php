@@ -4,12 +4,15 @@ namespace App\Http\Controllers\Api\v1;
 
 use App\Classes\Search\SearchBuilder;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Vacancy as VacancyRequest;
+use App\Http\Requests\VacancyRequest as VacancyRequest;
 use App\Http\Resources\v1\VacancyCollection;
 use App\Http\Resources\v1\VacancyResource;
 use App\Models\Vacancy;
 use App\Models\VacancyApplicant;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class VacancyController extends Controller
 {
@@ -36,7 +39,7 @@ class VacancyController extends Controller
      *     )
      * )
      */
-    public function index(Request $request)
+    public function index(Request $request): ResourceCollection
     {
         $vacancies = Vacancy::with("company")->with('typework');
 
@@ -73,7 +76,7 @@ class VacancyController extends Controller
      *     )
      * )
      */
-    public function indexFindOne(Vacancy $id)
+    public function indexFindOne(Vacancy $id): JsonResource
     {
         return new VacancyResource($id);
     }
@@ -97,7 +100,7 @@ class VacancyController extends Controller
      *     )
      * )
      */
-    public function store(VacancyRequest $request)
+    public function store(VacancyRequest $request): JsonResponse
     {
         $dataVacancies = Vacancy::create($request->all());
 
@@ -132,9 +135,8 @@ class VacancyController extends Controller
      *       ),
      * )
      */
-    public function update(VacancyRequest $request, Vacancy $vacancy, $id)
+    public function update(VacancyRequest $request, Vacancy $vacancy): JsonResponse
     {
-        $vacancy = Vacancy::findOrFail($id);
         $vacancy->update($request->all());
 
         return response()->json($vacancy);
@@ -163,10 +165,10 @@ class VacancyController extends Controller
      *       ),
      * )
      */
-    public function destroy($id)
+    public function destroy(Vacancy $vacancy): JsonResponse
     {
-        VacancyApplicant::where("vacancy_id", $id)->delete();
-        Vacancy::destroy($id);
+        VacancyApplicant::where("vacancy_id", $vacancy->id)->delete();
+        $vacancy->delete();
 
         return response()->json([
             'message' => 'Success',
@@ -194,10 +196,8 @@ class VacancyController extends Controller
      *       ),
      * )
      */
-    public function patchActive(Request $request)
+    public function patchActive(Vacancy $vacancy): JsonResponse
     {
-        $vacancy_id = $request->id;
-        $vacancy = Vacancy::findOrFail($vacancy_id);
         $vacancy->status = true;
         $vacancy->save();
 
@@ -229,10 +229,8 @@ class VacancyController extends Controller
      *      ),
      * )
      */
-    public function patchInactive(Request $request)
+    public function patchInactive(Vacancy $vacancy): JsonResponse
     {
-        $vacancy_id = $request->id;
-        $vacancy = Vacancy::findOrFail($vacancy_id);
         $vacancy->status = false;
         $vacancy->save();
 
@@ -259,7 +257,7 @@ class VacancyController extends Controller
      *      )
      *     )
      */
-    public function vacanciesActives()
+    public function vacanciesActives(): ResourceCollection
     {
         return new VacancyCollection(Vacancy::where('status', 1)->OrderBy('updated_at', 'desc')->get());
     }
@@ -285,7 +283,7 @@ class VacancyController extends Controller
      *      )
      *     )
      */
-    public function vacanciesInactives()
+    public function vacanciesInactives(): ResourceCollection
     {
         return new VacancyCollection(Vacancy::where('status', 0)->OrderBy('updated_at', 'desc')->get());
     }
@@ -309,7 +307,7 @@ class VacancyController extends Controller
      *     )
      * )
      */
-    public function filter(Request $request)
+    public function filter(Request $request): JsonResponse
     {
         //Build research motor
         $builder = new SearchBuilder('Vacancy', $request);
@@ -336,8 +334,8 @@ class VacancyController extends Controller
      *     )
      * )
      */
-    public function vacanciesJobLocation()
+    public function vacanciesJobLocation(): JsonResponse
     {
-        return Vacancy::select("job_location")->distinct()->get();
+        return response()->json(Vacancy::select("job_location")->distinct()->get());
     }
 }

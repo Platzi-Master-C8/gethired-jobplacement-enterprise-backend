@@ -5,11 +5,13 @@ namespace App\Http\Controllers\Api\v1;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\v1\CompanyResource;
 use App\Models\Company;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class CompanyController extends Controller
 {
-    public function list()
+    public function list(): JsonResponse
     {
         return response()->json([
             'message' => 'List Company',
@@ -17,7 +19,7 @@ class CompanyController extends Controller
         ]);
     }
 
-    public function listAsSelect()
+    public function listAsSelect(): JsonResponse
     {
         return response()->json([
             'message' => 'List Company for select element',
@@ -25,7 +27,7 @@ class CompanyController extends Controller
         ]);
     }
 
-    public function listWithVacancies()
+    public function listWithVacancies(): JsonResponse
     {
         $companies = Company::where('active', 1)->with('vacancies')->get();
 
@@ -35,7 +37,7 @@ class CompanyController extends Controller
         ]);
     }
 
-    public function indexFindOne(Company $id)
+    public function indexFindOne(Company $id): JsonResource
     {
         return new CompanyResource($id);
     }
@@ -48,7 +50,7 @@ class CompanyController extends Controller
     //     ]);
     // }
 
-    public function showWithVacancies(Company $company)
+    public function showWithVacancies(Company $company): JsonResponse
     {
         $vacancies = $company->vacancies;
 
@@ -59,7 +61,7 @@ class CompanyController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(Request $request): JsonResponse
     {
         $company = Company::create($request->all());
 
@@ -69,7 +71,7 @@ class CompanyController extends Controller
         ], 201);
     }
 
-    public function update(Request $request, Company $company)
+    public function update(Request $request, Company $company): JsonResponse
     {
         $company->update($request->all());
 
