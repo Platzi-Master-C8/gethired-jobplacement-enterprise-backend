@@ -5,11 +5,12 @@ namespace App\Http\Controllers\Api\v1;
 use App\Http\Controllers\Controller;
 use App\Models\Vacancy;
 use App\Models\VacancyApplicant;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class ApplicationController extends Controller
 {
-    public function listApplicants(Vacancy $vacancy)
+    public function listApplicants(Vacancy $vacancy): JsonResponse
     {
         $applicants = $vacancy->applicants;
 
@@ -20,7 +21,7 @@ class ApplicationController extends Controller
         ]);
     }
 
-    public function applyVacancy(Request $request, Vacancy $vacancy)
+    public function applyVacancy(Request $request, Vacancy $vacancy): JsonResponse
     {
         try {
             VacancyApplicant::create([

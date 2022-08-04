@@ -12,23 +12,17 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('v1/users', [UserController::class, 'index'])->name('users.index');
 
-Route::get('check-auth0', function () {
-    return response()->json([
-        'message' => 'Secure Zone by token auth0',
-    ]);
-})->middleware('jwt.auth0');
-
 Route::get('/v1/vacancies', [VacancyController::class, 'index'])->name('vacancies.index');
 Route::get('/v1/vacancies/{id}', [VacancyController::class, 'indexFindOne'])->name('vacancies.indexFindOne');
 
 Route::get('v1/vacancies/{vacancy}/applications', [ApplicationController::class, 'listApplicants'])->name('vacancies.applications.list');
 Route::post('v1/vacancies/{vacancy}/applications', [ApplicationController::class, 'applyVacancy'])->name('vacancies.applications.apply');
 Route::post('/v1/vacancies', [VacancyController::class, 'store'])->name('vacancies.store');
-Route::put('/v1/vacancies/{id}', [VacancyController::class, 'update'])->name('vacancies.update');
-Route::delete('/v1/vacancies/{id}', [VacancyController::class, 'destroy'])->name('vacancies.destroy');
+Route::put('/v1/vacancies/{vacancy}', [VacancyController::class, 'update'])->name('vacancies.update');
+Route::delete('/v1/vacancies/{vacancy}', [VacancyController::class, 'destroy'])->name('vacancies.destroy');
 
-Route::patch('v1/vacancies-status-active/{id}', [VacancyController::class, 'patchActive'])->name('status.active.patch');
-Route::patch('v1/vacancies-status-inactive/{id}', [VacancyController::class, 'patchInactive'])->name('status.inactive.patch');
+Route::patch('v1/vacancies-status-active/{vacancy}', [VacancyController::class, 'patchActive'])->name('status.active.patch');
+Route::patch('v1/vacancies-status-inactive/{vacancy}', [VacancyController::class, 'patchInactive'])->name('status.inactive.patch');
 Route::get('v1/vacancies-actives', [VacancyController::class, 'vacanciesActives'])->name('vacancies.allActives');
 Route::get('v1/vacancies-inactives', [VacancyController::class, 'vacanciesInactives'])->name('vacancies.allInactives');
 Route::get('v1/vacancies-job-location', [VacancyController::class, 'vacanciesJobLocation'])->name('vacancies.jobLocation');
@@ -60,7 +54,7 @@ Route::prefix('v1')->group(function () {
 
                 //Route::get('{company}/show', [CompanyController::class, 'show'])->name('show');
                 Route::get('{company}/show-with-vacancies', [CompanyController::class, 'showWithVacancies'])->name('show-with-vacancies');
-                Route::get('/{id}', [CompanyController::class, 'indexFindOne'])->name('indexFindOne');
+                Route::get('{company}', [CompanyController::class, 'indexFindOne'])->name('indexFindOne');
 
                 Route::patch('{company}', [CompanyController::class, 'update'])->name('update');
             });

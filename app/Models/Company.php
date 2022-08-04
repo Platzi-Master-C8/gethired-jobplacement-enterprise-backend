@@ -23,6 +23,9 @@ class Company extends Model
         'active',
     ];
 
+    /**
+     * @return HasMany<Vacancy>
+     */
     public function vacancies(): HasMany
     {
         return $this->hasMany(Vacancy::class, 'company_id', 'id');

@@ -2,7 +2,10 @@
 
 namespace App\Http\Resources\v1;
 
+use App\Models\Interview;
+use App\Models\Vacancy;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Carbon;
 
 class InterviewResource extends JsonResource
 {
@@ -10,10 +13,14 @@ class InterviewResource extends JsonResource
      * Transform the resource into an array.
      *
      * @param \Illuminate\Http\Request $request
-     * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
+     * @return array<string, array<string, int|string>|bool|Carbon|int|string|null>
      */
-    public function toArray($request)
+    public function toArray($request): array
     {
+        /** @var Interview $this */
+        /** @var Vacancy $vacancy */
+        $vacancy = $this->vacancy;
+
         return [
             "id" => $this->id,
             "user_id" => $this->user_id,
@@ -29,8 +36,8 @@ class InterviewResource extends JsonResource
             "created_at" => $this->created_at,
             "updated_at" => $this->updated_at,
             "vacancy" => [
-                "id" => $this->vacancy->id,
-                "name" => $this->vacancy->name,
+                "id" => $vacancy->id,
+                "name" => $vacancy->name,
             ],
         ];
     }

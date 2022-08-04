@@ -4,7 +4,6 @@ namespace App\Http\Requests;
 
 use App\Traits\ResponseJsonValidation;
 use Illuminate\Foundation\Http\FormRequest;
-use JetBrains\PhpStorm\ArrayShape;
 
 class SkillStoreRequest extends FormRequest
 {
@@ -15,7 +14,9 @@ class SkillStoreRequest extends FormRequest
         return true;
     }
 
-    #[ArrayShape(['name' => "string"])]
+    /**
+     * @return array<string,string>
+     */
     public function rules(): array
     {
         return [

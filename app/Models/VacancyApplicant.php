@@ -17,6 +17,9 @@ class VacancyApplicant extends Model
         'vacancy_id',
     ];
 
+    /**
+     * @return BelongsTo<Vacancy,VacancyApplicant>
+     */
     public function vacancy(): BelongsTo
     {
         return $this->belongsTo(Vacancy::class);

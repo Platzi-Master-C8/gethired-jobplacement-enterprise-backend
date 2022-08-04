@@ -2,34 +2,27 @@
 
 namespace App\Classes\Search;
 
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Http\Request;
 
 class SearchBuilder
 {
-    protected $modelName;
-
-    protected $request;
-
-    public function __construct($modelName, Request $request)
+    public function __construct(protected string $modelName, protected Request $request)
     {
-        $this->modelName = $modelName;
-
-        $this->request = $request;
     }
 
-    public function filter()
+    public function filter(): Builder
     {
-        $query = $this->applyFilters();
-
-        return $query;
+        return $this->applyFilters();
     }
 
-    private function applyFilters()
+    private function applyFilters(): Builder
     {
         $model = $this->getModel();
 
         $query = $model->newQuery();
-        //filters is a array
+        //filters is an array
         $filters = $this->getFilters();
 
         foreach ($filters as $filter) {
@@ -45,17 +38,15 @@ class SearchBuilder
         return $query;
     }
 
-    private function getModel()
+    private function getModel(): Model
     {
-        try {
-            return app('App\Models\\' . $this->modelName);
-        } catch (\Exception $e) {
-            abort(500);
-        }
+        return app('App\\Models\\' . $this->modelName);
     }
 
-    //recupera los filtros
-    private function getFilters()
+    /**
+     * @return array<string>
+     */
+    private function getFilters(): array
     {
         $filtersName = [];
 
@@ -63,6 +54,7 @@ class SearchBuilder
 
         if (file_exists($path)) {
             //Escanear los filtros
+            /** @var array $allFilters */
             $allFilters = scandir($path);
             //quita . y ..
             $filters = array_diff($allFilters, ['.', '..']);

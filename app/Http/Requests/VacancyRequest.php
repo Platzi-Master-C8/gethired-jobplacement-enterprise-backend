@@ -4,9 +4,8 @@ namespace App\Http\Requests;
 
 use App\Traits\ResponseJsonValidation;
 use Illuminate\Foundation\Http\FormRequest;
-use JetBrains\PhpStorm\ArrayShape;
 
-class Vacancy extends FormRequest
+class VacancyRequest extends FormRequest
 {
     use ResponseJsonValidation;
 
@@ -15,15 +14,9 @@ class Vacancy extends FormRequest
         return true;
     }
 
-    #[ArrayShape([
-        'name' => "string",
-        'description' => "string",
-        'status' => "string",
-        'company_id' => "string",
-        'typeWork' => "string",
-        'job_location' => "string",
-        'skills' => "string",
-    ])]
+    /**
+     * @return array<string,string>
+     */
     public function rules(): array
     {
         return [

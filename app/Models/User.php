@@ -45,16 +45,25 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * @return BelongsTo<Company, User>
+     */
     public function company(): BelongsTo
     {
         return $this->belongsTo(Company::class);
     }
 
+    /**
+     * @return HasMany<Vacancy>
+     */
     public function vacancies(): HasMany
     {
         return $this->hasMany(Vacancy::class);
     }
 
+    /**
+     * @return HasMany<Interview>
+     */
     public function interviews(): HasMany
     {
         return $this->hasMany(Interview::class);
