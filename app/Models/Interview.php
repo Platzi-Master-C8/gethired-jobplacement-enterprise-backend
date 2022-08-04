@@ -35,7 +35,7 @@ class Interview extends Model
     }
 
     /**
-     * @return BelongsTo<Vacancy>
+     * @return BelongsTo<Vacancy, Interview>
      */
     public function vacancy(): BelongsTo
     {

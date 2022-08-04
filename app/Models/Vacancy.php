@@ -13,8 +13,6 @@ class Vacancy extends Model
 
     protected $table = 'vacancies';
 
-
-
     protected $fillable = [
         'name',
         'user_id',
@@ -30,21 +28,33 @@ class Vacancy extends Model
         'minimum_experience',
     ];
 
+    /**
+     * @return BelongsTo<User,Vacancy>
+     */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
+    /**
+     * @return BelongsTo<Company,Vacancy>
+     */
     public function company(): BelongsTo
     {
         return $this->belongsTo(Company::class);
     }
 
+    /**
+     * @return BelongsTo<TypeWork,Vacancy>
+     */
     public function typework(): BelongsTo
     {
         return $this->belongsTo(TypeWork::class, 'typeWork');
     }
 
+    /**
+     * @return HasMany<VacancyApplicant>
+     */
     public function applicants(): HasMany
     {
         return $this->hasMany(VacancyApplicant::class);
