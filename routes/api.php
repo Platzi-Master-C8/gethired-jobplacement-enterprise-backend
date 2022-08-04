@@ -54,7 +54,7 @@ Route::prefix('v1')->group(function () {
 
                 //Route::get('{company}/show', [CompanyController::class, 'show'])->name('show');
                 Route::get('{company}/show-with-vacancies', [CompanyController::class, 'showWithVacancies'])->name('show-with-vacancies');
-                Route::get('/{id}', [CompanyController::class, 'indexFindOne'])->name('indexFindOne');
+                Route::get('{company}', [CompanyController::class, 'indexFindOne'])->name('indexFindOne');
 
                 Route::patch('{company}', [CompanyController::class, 'update'])->name('update');
             });

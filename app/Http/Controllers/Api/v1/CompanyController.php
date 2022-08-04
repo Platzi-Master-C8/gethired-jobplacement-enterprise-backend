@@ -37,9 +37,9 @@ class CompanyController extends Controller
         ]);
     }
 
-    public function indexFindOne(Company $id): JsonResource
+    public function indexFindOne(Company $company): JsonResource
     {
-        return new CompanyResource($id);
+        return new CompanyResource($company);
     }
 
     // public function show(Company $company)
