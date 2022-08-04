@@ -9,7 +9,7 @@ class CompanyResource extends JsonResource
 {
     /**
      * @param $request
-     * @return array
+     * @return array<string, bool|int|string|null>
      */
     public function toArray($request): array
     {

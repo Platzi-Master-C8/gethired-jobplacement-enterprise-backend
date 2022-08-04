@@ -5,6 +5,7 @@ namespace App\Http\Resources\v1;
 use App\Models\Interview;
 use App\Models\Vacancy;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Carbon;
 
 class InterviewResource extends JsonResource
 {
@@ -12,7 +13,7 @@ class InterviewResource extends JsonResource
      * Transform the resource into an array.
      *
      * @param \Illuminate\Http\Request $request
-     * @return array
+     * @return array<string, array<string, int|string>|bool|Carbon|int|string|null>
      */
     public function toArray($request): array
     {

@@ -6,6 +6,7 @@ use App\Models\Company;
 use App\Models\TypeWork;
 use App\Models\Vacancy;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Carbon;
 
 class VacancyResource extends JsonResource
 {
@@ -13,7 +14,7 @@ class VacancyResource extends JsonResource
      * Transform the resource into an array.
      *
      * @param \Illuminate\Http\Request $request
-     * @return array
+     * @return array<string, array<int|string, mixed>|bool|Carbon|int|string|null>
      */
     public function toArray($request): array
     {
