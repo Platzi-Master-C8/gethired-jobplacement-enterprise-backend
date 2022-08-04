@@ -19,6 +19,7 @@ class InterviewResource extends JsonResource
         /** @var Interview $this */
         /** @var Vacancy $vacancy */
         $vacancy = $this->vacancy;
+
         return [
             "id" => $this->id,
             "user_id" => $this->user_id,

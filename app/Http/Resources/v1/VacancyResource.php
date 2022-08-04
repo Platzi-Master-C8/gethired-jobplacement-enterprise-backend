@@ -28,6 +28,7 @@ class VacancyResource extends JsonResource
         $typeWork = $this->typework;
         /** @var Company $company */
         $company = $this->company;
+
         return [
             'id' => $this->id,
             'name' => $this->name,

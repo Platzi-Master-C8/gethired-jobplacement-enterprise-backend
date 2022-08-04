@@ -5,7 +5,6 @@ namespace App\Http\Requests;
 use App\Models\TypeWork;
 use App\Traits\ResponseJsonValidation;
 use Illuminate\Foundation\Http\FormRequest;
-use JetBrains\PhpStorm\ArrayShape;
 
 class TypeWorkStoreRequest extends FormRequest
 {
